@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#00529B">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Guia DCV — São Luís</title>
+<style>
+:root{
+  --azul:#00529B;--azul2:#00AEEF;--verde:#74B944;--verde2:#5EA88C;
+  --laranja:#F4A100;--vermelho:#C00000;--cinza:#666;--texto:#2D2D2A;
+  --fundo:#F5F4F0;--borda:#E0DDD6;--alerta:#FFF3D4;--risco:#FCEBEB;
+  --ok:#EAF7F2;--raio:18px;--sombra:0 2px 14px rgba(0,0,0,.09);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--fundo);color:var(--texto);font-size:15px;line-height:1.55}
+.topbar{width:100%;height:32px;background:#fff;overflow:hidden}.topbar img{width:100%;height:100%;object-fit:cover;display:block}
+.brand{background:#fff;padding:24px 16px 20px;border-bottom:1px solid #eee}.brand-inner{max-width:760px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:44px}.brand img{max-height:64px;max-width:45%;object-fit:contain}
+.header-blue{background:var(--azul);color:#fff;box-shadow:0 3px 12px rgba(0,0,0,.18)}.header-inner{max-width:760px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:14px}.appicon{width:44px;height:44px;border-radius:10px;background:#fff;object-fit:cover}.header-blue h1{font-size:16px;line-height:1.18}.header-blue p{font-size:12px;opacity:.9}.home-fixed{position:fixed;right:12px;bottom:16px;z-index:90;background:var(--azul);color:#fff;border:0;border-radius:999px;padding:12px 16px;box-shadow:0 4px 16px rgba(0,0,0,.24);font-weight:700;cursor:pointer}
+.menu-toggle{position:sticky;top:0;z-index:95;width:100%;border:0;background:#fff;border-bottom:1px solid var(--borda);padding:13px 18px;color:var(--azul);font-weight:700;text-align:left;font-size:15px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:998}.backdrop.aberto{display:block}
+nav{position:fixed;top:0;left:-310px;width:300px;max-width:86vw;height:100vh;background:#fff;z-index:999;transition:left .22s ease;box-shadow:4px 0 20px rgba(0,0,0,.2);overflow:auto}nav.aberto{left:0}.mh{background:var(--azul);color:#fff;padding:18px;display:flex;justify-content:space-between;align-items:center}.mh button{background:transparent;border:0;color:#fff;font-size:28px;cursor:pointer}nav a{display:block;padding:13px 18px;border-left:5px solid transparent;color:var(--texto);text-decoration:none;font-weight:600;font-size:14px}nav a:hover,nav a.ativo{background:#E6F4FB;color:var(--azul);border-left-color:var(--azul)}
+main{max-width:760px;margin:0 auto;padding:24px 16px 56px}section{display:none}section.ativa{display:block}
+.card{background:#fff;border:1px solid var(--borda);border-radius:var(--raio);box-shadow:var(--sombra);padding:22px;margin-bottom:18px;border-left:5px solid transparent}.az{border-left-color:var(--azul)}.verde{border-left-color:var(--verde2)}.laranja{border-left-color:var(--laranja)}.vermelho{border-left-color:var(--vermelho)}
+.tag{font-family:"Courier New",monospace;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--cinza);font-weight:700;margin-bottom:12px}.hero h2{color:var(--azul);font-size:25px;margin-bottom:10px;line-height:1.15}.hero p{font-size:16px;color:#444}
+.group-title{font-size:13px;font-weight:800;color:#555;text-transform:uppercase;letter-spacing:.06em;margin:24px 0 10px}
+.grid{display:grid;grid-template-columns:1fr;gap:12px}.top-modules{display:grid;grid-template-columns:1fr 1fr;gap:12px}.top-modules .tile{min-height:118px}.top-modules .tile strong{font-size:16px}.top-modules .tile span{font-size:12px}.tile{border:1px solid var(--borda);background:#fff;border-radius:18px;padding:18px 18px 18px 16px;text-align:left;box-shadow:var(--sombra);font-family:Arial,Helvetica,sans-serif;cursor:pointer;border-left:7px solid var(--azul);width:100%}.tile strong{display:block;color:var(--azul);font-size:17px;margin-bottom:4px}.tile span{font-size:13px;color:#555}.tile:hover{transform:translateY(-1px);box-shadow:0 4px 18px rgba(0,0,0,.12)}
+h3{color:var(--azul);font-size:19px;margin:6px 0 10px}.small{font-size:13px;color:#666}.ref{font-size:13px;margin-bottom:10px}
+ul.clean{list-style:none;display:flex;flex-direction:column;gap:8px}ul.clean li{display:flex;gap:9px}
+.al{background:var(--alerta);border-left:4px solid var(--laranja);padding:12px 14px;border-radius:0 12px 12px 0;margin:12px 0;color:#5B3A00}.danger{background:var(--risco);border-left-color:var(--vermelho);color:#5E1111}.ok{background:var(--ok);border-left-color:var(--verde2);color:#164E3A}
+details{border:1px solid var(--borda);border-radius:14px;margin:9px 0;background:#fff;overflow:hidden}summary{padding:13px 15px;color:var(--azul);font-weight:700;cursor:pointer}.inside{padding:0 15px 15px;font-size:14px}.inside ul{margin-left:18px}
+.alg-top{background:var(--azul);color:#fff;border-radius:16px 16px 0 0;margin:-22px -22px 18px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px}.alg-top strong{font-size:15px}.alg-actions{display:flex;gap:6px;flex-wrap:wrap}.alg-top button{background:#fff;color:var(--azul);border:0;border-radius:999px;font-weight:700;padding:8px 12px;font-size:12px;cursor:pointer}
+.pb{height:5px;background:#e5e5e5;border-radius:999px;overflow:hidden;margin-bottom:20px}.pf{height:100%;background:var(--azul2);width:20%;transition:.25s}
+.step{display:none}.step.ativa{display:block}.perg{font-size:20px;font-weight:700;line-height:1.3;color:var(--azul);margin-bottom:16px}.opcoes{display:flex;flex-direction:column;gap:10px}.ob{border:1.5px solid #d7d3cb;border-radius:14px;background:#fff;padding:14px;font-family:Arial,Helvetica,sans-serif;font-size:15px;text-align:left;cursor:pointer}.ob:hover{border-color:var(--azul2);background:#F1FBFF}
+label{font-weight:700;color:#444;font-size:13px;margin-top:8px;display:block}input{width:100%;padding:12px;border:1.5px solid #d7d3cb;border-radius:12px;font-size:16px;margin:6px 0 10px}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.btn{border:0;background:var(--azul);color:#fff;border-radius:12px;padding:11px 16px;font-weight:700;cursor:pointer}.btn2{border:1px solid #d7d3cb;background:#fff;color:#333;border-radius:12px;padding:11px 16px;font-weight:700;cursor:pointer}
+.result{background:#E6F4FB;border:1.5px solid var(--azul2);border-radius:16px;padding:18px}.big{font-family:"Courier New",monospace;font-size:25px;color:var(--azul);font-weight:700;margin:4px 0}.imgfull{width:100%;border-radius:14px;margin:10px 0;border:1px solid var(--borda)}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}.brand img{max-height:72px}.hero h2{font-size:28px}}
+</style>
+</head>
+<body>
+<div class="topbar"><img src="barra_prefeitura.png" alt=""></div>
+<div class="brand"><div class="brand-inner"><img src="prefeitura_semus.png" alt="Prefeitura de São Luís SEMUS"><img src="logo_covep.png" alt="Vigilância Epidemiológica SVES SEMUS"></div></div>
+<div class="header-blue"><div class="header-inner"><img class="appicon" src="icon-192.png" alt=""><div><h1>Guia de Campo DCV — São Luís/MA</h1><p>Controle Vetorial · Endemias · SVES · COVEP São Luís</p></div></div></div>
+<button class="menu-toggle" id="menuBtn">☰ Menu</button>
+<button class="home-fixed" data-target="inicio">🏠 Início</button>
+<div id="backdrop" class="backdrop"></div>
+<nav id="menu">
+  <div class="mh"><strong>Menu</strong><button id="closeMenu">×</button></div>
+  <a href="#" data-target="inicio" class="ativo">Início</a>
+  <a href="#" data-target="decisao">Decisão rápida em campo</a>
+  <a href="#" data-target="visita">Visita domiciliar</a>
+  <a href="#" data-target="caramujo">Encontrou caramujo</a>
+  <a href="#" data-target="inseto">Inseto com interesse em saúde pública</a>
+  <a href="#" data-target="mosquito">Mosquito / foco de água parada</a>
+  <a href="#" data-target="barbeiro">Encontrou barbeiro</a>
+  <a href="#" data-target="armadilha">Instalar armadilha</a>
+  <a href="#" data-target="monitoramento">Monitoramento programado</a>
+  <a href="#" data-target="vetores">Orientar sobre vetores/endemias</a>
+  <a href="#" data-target="bloqueio">Bloqueio / UBV</a>
+  <a href="#" data-target="sinantropicos">Animais sinantrópicos</a>
+  <a href="#" data-target="contatos">Contatos</a>
+  <a href="#" data-target="sobre">Sobre o aplicativo</a>
+</nav>
+
+<main>
+
+<section id="inicio" class="ativa">
+  <div class="card az hero"><div class="tag">Apoio à decisão em campo</div><h2>O que você vai fazer agora?</h2><p>Selecione o módulo conforme a atividade ou dúvida durante as ações de controle vetorial e vigilância no território.</p></div>
+  <div class="group-title">Módulos principais</div>
+  <div class="top-modules">
+    <button class="tile" style="border-left-color:#00529B" data-target="visita"><strong>Atividade no território</strong><span>Visita domiciliar, sinais de alerta e encaminhamentos</span></button>
+    <button class="tile" style="border-left-color:#F4A100" data-target="decisao"><strong>Decisão rápida</strong><span>Vi isso → o que faço agora?</span></button>
+  </div>
+  <div class="group-title">Situações encontradas no campo</div>
+  <div class="grid">
+    <button class="tile" style="border-left-color:#74B944" data-target="caramujo"><strong>Encontrou caramujo</strong><span>Coleta, orientação e encaminhamento</span></button>
+    <button class="tile" style="border-left-color:#F4A100" data-target="inseto"><strong>Inseto com possível interesse em saúde pública</strong><span>Avaliar vínculo com evento ou situação incomum</span></button>
+    <button class="tile" style="border-left-color:#00AEEF" data-target="mosquito"><strong>Mosquito / foco de água parada</strong><span>Eliminar, vedar ou direcionar para larvicida</span></button>
+    <button class="tile" style="border-left-color:#C00000" data-target="barbeiro"><strong>Encontrou barbeiro</strong><span>Captura segura e envio para identificação</span></button>
+    <button class="tile" style="border-left-color:#5EA88C" data-target="armadilha"><strong>Instalar armadilha</strong><span>Conteúdo em construção</span></button>
+    <button class="tile" style="border-left-color:#74B944" data-target="monitoramento"><strong>Monitoramento programado</strong><span>Ações rotineiras da vigilância</span></button>
+  </div>
+  <div class="group-title">Apoio técnico</div>
+  <div class="grid">
+    <button class="tile" style="border-left-color:#00AEEF" data-target="vetores"><strong>Orientar sobre vetores/endemias</strong><span>Informações para educação em saúde</span></button>
+    <button class="tile" style="border-left-color:#F4A100" data-target="bloqueio"><strong>Realizar bloqueio / UBV</strong><span>Uso técnico, alertas e comunicação à vigilância</span></button>
+  </div>
+</section>
+
+
+<section id="decisao">
+  <div class="card laranja hero"><div class="tag">Modo rápido</div><h2>Vi isso → o que faço?</h2><p>Escolha a situação encontrada no campo. O app direciona para a conduta mais adequada.</p></div>
+  <div class="grid">
+    <button class="tile" style="border-left-color:#00AEEF" data-target="mosquito"><strong>Mosquito / foco de água</strong><span>Decidir se elimina, veda ou calcula larvicida</span></button>
+    <button class="tile" style="border-left-color:#74B944" data-target="caramujo"><strong>Caramujo</strong><span>Identificar, orientar coleta e acionar malacologia</span></button>
+    <button class="tile" style="border-left-color:#C00000" data-target="barbeiro"><strong>Barbeiro</strong><span>Captura segura e envio ao laboratório</span></button>
+    <button class="tile" style="border-left-color:#5EA88C" data-target="vetores"><strong>Mosquito pequeno / palha / maruim</strong><span>Ver controle ambiental e sinais de alerta</span></button>
+    <button class="tile" style="border-left-color:#F4A100" data-target="inseto"><strong>Inseto suspeito</strong><span>Avaliar vínculo com evento de saúde pública</span></button>
+    <button class="tile" style="border-left-color:#00529B" data-target="vetores"><strong>Não sei identificar</strong><span>Comparar imagens e orientações por vetor</span></button>
+  </div>
+  <div class="card vermelho" style="margin-top:28px"><h3>Quando comunicar a vigilância?</h3>
+    <p><strong>Evento de saúde pública</strong> é qualquer situação que foge ao padrão esperado e pode representar risco à saúde coletiva.</p>
+    <p>Comunique principalmente quando houver ocorrência de sinais ou sintomas semelhantes, aumento inesperado de casos em determinado local ou situações com potencial de transmissão.</p>
+    <div class="al danger"><strong>Cluster</strong> é a ocorrência de vários casos próximos no tempo e no espaço.</div>
+    <ul class="clean">
+      <li>Várias pessoas doentes na mesma residência.</li>
+      <li>Casos semelhantes na mesma rua ou bairro.</li>
+      <li>Pessoas com sintomas parecidos em curto período de tempo.</li>
+      <li>Ocorrências em instituições: escola, creche, ILPI, abrigo ou unidade coletiva.</li>
+    </ul>
+    <p><strong>Regra prática:</strong> se parecer que não é um caso isolado, comunique a vigilância.</p>
+    <p><strong>DCV:</strong> (98) 99220-6557<br><strong>COVEP:</strong> vigilanciaepidemiologica.sves@semus.saoluis.ma.gov.br</p>
+  </div>
+</section>
+
+<section id="visita">
+  <div class="card az hero"><div class="tag">Visita domiciliar</div><h2>O que perguntar, observar e encaminhar</h2><p>O ACE não diagnostica, mas identifica sinais de alerta e ajuda a conectar o morador à rede de saúde.</p></div>
+  <div class="card vermelho"><h3>Quando o ACE deve acionar a vigilância?</h3><p>Evento de saúde pública é qualquer situação que foge da normalidade e pode representar risco coletivo.</p><div class="al danger"><strong>Regra simples:</strong> se houver vários casos no mesmo lugar em pouco tempo, comunique a vigilância.</div><ul class="clean"><li>Várias pessoas com febre na mesma rua ou bairro.</li><li>Mais de uma pessoa com diarreia no mesmo domicílio ou local próximo.</li><li>Casos em escola, creche, ILPI ou outra instituição.</li><li>Pessoas com sintomas semelhantes em curto período.</li><li>Situação incomum ou que chama atenção.</li></ul><p><strong>Fluxo:</strong> ACE → DCV → Vigilância Epidemiológica/CIEVS e área técnica.</p></div>
+  <div class="card"><h3>Síndrome Gripal (SG)</h3><p><strong>Perguntar:</strong> febre recente, tosse, dor de garganta, coriza, dor no corpo.</p><p><strong>Suspeitar:</strong> febre + tosse ou dor de garganta.</p><div class="al ok"><strong>Conduta:</strong> orientar UBS, medidas respiratórias e comunicação conforme fluxo local.</div></div>
+  <div class="card"><h3>Tuberculose</h3><p><strong>Perguntar:</strong> tosse por 3 semanas ou mais, emagrecimento, suor noturno, febre vespertina.</p><p><strong>Suspeitar:</strong> tosse persistente, especialmente com perda de peso e febre no fim do dia.</p><div class="al ok"><strong>Conduta:</strong> encaminhar para UBS. Orientar que contatos domiciliares e pessoas de convivência próxima também procurem avaliação, mesmo sem sintomas.</div></div>
+  <div class="card"><h3>Arboviroses</h3><p><strong>Perguntar:</strong> febre recente, dor no corpo, dor atrás dos olhos, manchas na pele, dor nas articulações.</p><p><strong>Sinais de alarme:</strong> dor abdominal intensa, vômitos persistentes, sangramentos, tontura/desmaio, sonolência ou irritabilidade.</p><div class="al danger">Sinais de alarme exigem orientação para atendimento imediato. Se houver vários casos no mesmo lugar em pouco tempo, comunicar à DCV para acionamento da Vigilância Epidemiológica/CIEVS e área técnica.</div></div>
+  <div class="card"><h3>Malária</h3><p><strong>Perguntar:</strong> febre no final da tarde ou febre cíclica, calafrios, suor, viagem ou procedência de área de transmissão.</p><p><strong>Suspeitar:</strong> febre + calafrios + vínculo epidemiológico.</p><div class="al ok">Encaminhar para diagnóstico oportuno.</div></div>
+  <div class="card"><h3>Leishmaniose visceral</h3><p><strong>Perguntar:</strong> febre prolongada, emagrecimento, fraqueza, aumento da barriga, presença de cães ou área com mosquito-palha.</p><p><strong>Suspeitar:</strong> febre persistente + emagrecimento/aumento abdominal.</p><div class="al danger"><strong>Conduta:</strong> encaminhar imediatamente para UBS para avaliação médica e exames. Comunicar equipe de saúde para investigação no território.</div></div>
+  <div class="card"><h3>Leishmaniose tegumentar</h3><p><strong>Perguntar:</strong> ferida na pele que não cicatriza, lesão há semanas ou meses, lesão em mucosa, histórico de área de mata ou exposição.</p><p><strong>Suspeitar:</strong> úlcera crônica, geralmente de bordas elevadas.</p><div class="al ok"><strong>Conduta:</strong> encaminhar para UBS. Orientar não usar medicamento caseiro na lesão.</div></div>
+  <div class="card"><h3>Hanseníase</h3><p><strong>Perguntar:</strong> manchas na pele, dormência, formigamento, perda de sensibilidade ao calor/frio/dor.</p><p><strong>Suspeitar:</strong> mancha com alteração de sensibilidade.</p><div class="al ok"><strong>Conduta:</strong> encaminhar para APS/PMCH. Orientar que todos os moradores da casa e contatos próximos devem procurar UBS para exame de contato, mesmo sem sintomas.</div></div>
+  <div class="card"><h3>Doenças diarreicas / MDDA</h3><p><strong>Perguntar:</strong> diarreia recente, vômitos, febre, mais de uma pessoa doente na casa, consumo de água/alimento suspeito.</p><p><strong>Suspeitar:</strong> vários casos no mesmo domicílio, rua, bairro, escola, creche ou instituição de longa permanência.</p><div class="al danger"><strong>Conduta:</strong> orientar hidratação e atendimento. Em suspeita de surto, comunicar imediatamente à DCV para acionamento da Vigilância Epidemiológica/CIEVS e área técnica.</div></div>
+  <div class="card"><h3>Esquistossomose</h3><p><strong>Perguntar:</strong> contato com rio, lagoa, vala ou água doce; coceira após contato; dor abdominal ou diarreia.</p><p><strong>Observar:</strong> presença de caramujos e áreas de risco.</p><div class="al ok"><strong>Conduta:</strong> encaminhar para UBS para avaliação e exame. Orientar evitar contato com água suspeita. Mais de um caso na mesma área deve ser comunicado à DCV.</div></div>
+  <div class="card"><h3>Filariose linfática</h3><p><strong>Perguntar:</strong> inchaço persistente em pernas, braços, mamas ou genitália; episódios de inflamação; área com esgoto/água poluída.</p><p><strong>Observar:</strong> condições ambientais favoráveis a Culex.</p><div class="al ok"><strong>Conduta:</strong> encaminhar para UBS para avaliação e investigação. Orientar proteção contra mosquitos e melhoria das condições ambientais.</div></div>
+</section>
+
+<section id="caramujo">
+  <div class="card verde hero"><div class="tag">Fluxo de campo</div><h2>Encontrou caramujo</h2><p>Use este fluxo para decidir se a equipe coleta ou se deve orientar o responsável pelo imóvel.</p></div>
+  <div class="card"><h3>Identificação visual</h3><img class="imgfull" src="caramujo_comparativo.png" alt="Comparativo entre caramujo africano, nativo e ovos"><p class="small">Use a imagem para apoiar a orientação ao morador e evitar confusão com espécies nativas.</p></div>
+  <div class="card verde alg" id="alg-caramujo">
+    <div class="alg-top"><strong>Controle de caramujos</strong><div class="alg-actions"><button data-target="inicio">Início</button><button data-reset="caramujo">↺ Reiniciar</button></div></div>
+    <div class="pb"><div class="pf" id="prog-caramujo"></div></div>
+    <div class="step ativa" data-step="1"><div class="perg">1. O caramujo está em área pública ou privada?</div><div class="opcoes"><button class="ob" data-result="caramujo:privada">Área privada</button><button class="ob" data-next="caramujo:2">Área pública</button></div></div>
+    <div class="step" data-step="2"><div class="perg">2. Há grande quantidade ou risco coletivo?</div><div class="opcoes"><button class="ob" data-result="caramujo:publicaGrande">Sim</button><button class="ob" data-result="caramujo:publicaPontual">Não, é coleta pontual</button></div></div>
+    <div class="step" data-step="3"><div id="out-caramujo"></div></div>
+  </div>
+</section>
+
+<section id="inseto">
+  <div class="card laranja hero"><div class="tag">Fluxo de campo</div><h2>Inseto com possível interesse em saúde pública</h2><p>Não é todo inseto desconhecido que deve ser coletado. Avalie se há relação com evento de saúde pública.</p></div>
+  <div class="card laranja alg" id="alg-inseto">
+    <div class="alg-top"><strong>Coleta qualificada</strong><div class="alg-actions"><button data-target="inicio">Início</button><button data-reset="inseto">↺ Reiniciar</button></div></div>
+    <div class="pb"><div class="pf" id="prog-inseto"></div></div>
+    <div class="step ativa" data-step="1"><div class="perg">1. O inseto tem relação com evento de saúde pública?</div><p class="small">Exemplos: picadas em moradores, vários insetos no mesmo local, doença ou reação associada, situação incomum, semelhança com vetor conhecido.</p><div class="opcoes"><button class="ob" data-result="inseto:semVinculo">Não</button><button class="ob" data-next="inseto:2">Sim</button></div></div>
+    <div class="step" data-step="2"><div class="perg">2. O inseto está disponível para coleta?</div><div class="opcoes"><button class="ob" data-result="inseto:indisponivel">Não</button><button class="ob" data-next="inseto:3">Sim</button></div></div>
+    <div class="step" data-step="3"><div class="perg">3. O inseto está íntegro, sem estar esmagado?</div><div class="opcoes"><button class="ob" data-result="inseto:danificado">Não</button><button class="ob" data-result="inseto:coletar">Sim</button></div></div>
+    <div class="step" data-step="4"><div id="out-inseto"></div></div>
+  </div>
+</section>
+
+<section id="mosquito">
+  <div class="card az hero"><div class="tag">Fluxo de campo</div><h2>Mosquito / foco de água parada</h2><p>Este fluxo decide a conduta. O cálculo de dose do larvicida fica em módulo separado.</p></div>
+  <div class="card az alg" id="alg-mosquito">
+    <div class="alg-top"><strong>Foco de água parada</strong><div class="alg-actions"><button data-target="inicio">Início</button><button data-reset="mosquito">↺ Reiniciar</button></div></div>
+    <div class="pb"><div class="pf" id="prog-mosquito"></div></div>
+    <div class="step ativa" data-step="1"><div class="perg">1. Existe água parada ou recipiente com potencial de criadouro?</div><div class="opcoes"><button class="ob" data-result="mosquito:semAgua">Não</button><button class="ob" data-next="mosquito:2">Sim</button></div></div>
+    <div class="step" data-step="2"><div class="perg">2. O recipiente pode ser eliminado, esvaziado, virado, tampado ou protegido?</div><div class="opcoes"><button class="ob" data-result="mosquito:eliminar">Sim</button><button class="ob" data-next="mosquito:3">Não</button></div></div>
+    <div class="step" data-step="3"><div class="perg">3. É depósito não eliminável que precisa de tratamento?</div><div class="opcoes"><button class="ob" data-larv-start="2">Sim, calcular larvicida</button><button class="ob" data-result="mosquito:avaliar">Não / tenho dúvida</button></div></div>
+    <div class="step" data-step="4"><div id="out-mosquito"></div></div>
+  </div>
+</section>
+
+<section id="barbeiro">
+  <div class="card vermelho hero"><div class="tag">Fluxo de campo</div><h2>Encontrou barbeiro</h2><p>Priorize captura segura, registro do local e envio para identificação da espécie.</p></div>
+  <div class="card"><h3>Ciclo da doença de Chagas</h3><img class="imgfull" src="ciclo_barbeiro.png" alt="Ciclo de transmissão da doença de Chagas"></div>
+  <div class="card vermelho alg" id="alg-barbeiro">
+    <div class="alg-top"><strong>Triatomíneo / barbeiro</strong><div class="alg-actions"><button data-target="inicio">Início</button><button data-reset="barbeiro">↺ Reiniciar</button></div></div>
+    <div class="pb"><div class="pf" id="prog-barbeiro"></div></div>
+    <div class="step ativa" data-step="1"><div class="perg">1. O inseto está disponível para coleta?</div><div class="opcoes"><button class="ob" data-result="barbeiro:indisponivel">Não</button><button class="ob" data-next="barbeiro:2">Sim</button></div></div>
+    <div class="step" data-step="2"><div class="perg">2. Onde foi encontrado?</div><div class="opcoes"><button class="ob" data-result="barbeiro:intradomicilio">Dentro da casa</button><button class="ob" data-result="barbeiro:externo">Área externa/anexos</button></div></div>
+    <div class="step" data-step="3"><div id="out-barbeiro"></div></div>
+  </div>
+</section>
+
+<section id="armadilha">
+  <div class="card verde hero"><div class="tag">Em construção</div><h2>Instalar armadilha</h2><p>Existem vários tipos de armadilhas e cada uma exige detalhamento técnico próprio. Este módulo ficará disponível após validação da área técnica.</p></div>
+  <div class="card"><h3>Conteúdo previsto</h3><ul class="clean"><li>Ovitrampas.</li><li>Armadilhas para mosquitos adultos.</li><li>Armadilhas para flebotomíneos.</li><li>Registro, instalação, retirada, acondicionamento e encaminhamento.</li></ul></div>
+</section>
+
+<section id="monitoramento">
+  <div class="card verde hero"><div class="tag">Rotina de vigilância</div><h2>Monitoramento programado</h2><p>Use para lembrar os pontos essenciais durante ações programadas pela DCV.</p></div>
+  <div class="card"><h3>Checklist de campo</h3><ul class="clean"><li>Conferir planejamento da área e atividade prevista.</li><li>Levar materiais, EPIs, fichas e identificação necessários.</li><li>Registrar data, endereço, bairro, ponto visitado e achados.</li><li>Comunicar situação fora do padrão à supervisão/DCV.</li><li>Encaminhar amostras conforme fluxo técnico.</li></ul></div>
+</section>
+
+<section id="larvicida">
+  <div class="card az hero"><div class="tag">Aplicação de larvicida</div><h2>BTi — VectoBac WG</h2><p>Dose adotada: <strong>1 g para cada 10 litros</strong> de água. Use sempre orientação técnica da DCV.</p></div>
+  <div class="card az" id="alg-larvicida">
+    <div class="alg-top"><strong>Algoritmo de aplicação</strong><div class="alg-actions"><button data-target="inicio">Início</button><button id="resetLarv">↺ Reiniciar</button></div></div>
+    <div class="pb"><div class="pf" id="prog-larvicida"></div></div>
+    <div class="step ativa" data-step="1"><div class="perg">1. O recipiente pode ser eliminado, esvaziado, virado, tampado ou protegido?</div><div class="opcoes"><button class="ob" id="larvStop">Sim</button><button class="ob" data-next-larv="2">Não, é depósito não eliminável</button></div></div>
+    <div class="step" data-step="2"><div class="perg">2. Qual é o formato do depósito?</div><div class="opcoes"><button class="ob" data-next-larv="3">Retangular / caixa / tanque</button><button class="ob" data-next-larv="4">Cilíndrico / tambor / caixa redonda</button><button class="ob" data-next-larv="5">Não sei medir: usar estimativa</button></div></div>
+    <div class="step" data-step="3"><div class="perg">3. Informe as medidas em centímetros (cm)</div><label>Comprimento (cm)</label><input id="comp" inputmode="decimal" placeholder="Ex.: 120"><label>Largura (cm)</label><input id="larg" inputmode="decimal" placeholder="Ex.: 80"><label>Altura ou nível da água (cm)</label><input id="altRet" inputmode="decimal" placeholder="Ex.: 50"><div class="row"><button class="btn" id="calcRet">Calcular dose</button><button class="btn2" data-next-larv="2">Voltar</button></div></div>
+    <div class="step" data-step="4"><div class="perg">3. Informe as medidas em centímetros (cm)</div><label>Diâmetro (cm)</label><input id="diam" inputmode="decimal" placeholder="Ex.: 60"><label>Altura ou nível da água (cm)</label><input id="altCil" inputmode="decimal" placeholder="Ex.: 80"><div class="row"><button class="btn" id="calcCil">Calcular dose</button><button class="btn2" data-next-larv="2">Voltar</button></div></div>
+    <div class="step" data-step="5"><div class="perg">3. Escolha uma estimativa aproximada de volume</div><div class="opcoes"><button class="ob" data-dose="50">Até 50 L</button><button class="ob" data-dose="100">100 L</button><button class="ob" data-dose="200">Tambor padrão — 200 L</button><button class="ob" data-dose="500">Caixa pequena — 500 L</button><button class="ob" data-dose="1000">Caixa grande — 1000 L</button></div><div class="row"><button class="btn2" data-next-larv="2">Voltar</button></div></div>
+    <div class="step" data-step="6"><div id="doseBox"></div><div class="row"><button class="btn" id="resetLarv2">Reiniciar</button><button class="btn2" data-target="inicio">Voltar ao início</button></div></div>
+  </div>
+</section>
+
+
+
+<section id="vetores">
+  <div class="card az hero"><div class="tag">Orientação técnica</div><h2>Vetores e endemias</h2><p>Conteúdo padronizado para orientação rápida do ACE e apoio à educação em saúde.</p></div>
+
+  <div class="card">
+    <h3>Aedes aegypti — Arboviroses</h3>
+    <img class="imgfull" src="ciclo_aedes_padrao.png" alt="Ciclo de vida do Aedes aegypti">
+    <p><strong>Doenças:</strong> dengue, chikungunya, zika e febre amarela urbana em condições específicas.</p>
+    <p><strong>Ciclo:</strong> ovo → larva → pupa → adulto, em água parada limpa ou pouco suja, principalmente em recipientes artificiais.</p>
+    <p><strong>Cuidados:</strong> eliminar água parada, tampar caixas d’água, limpar calhas/ralos, guardar pneus cobertos e descartar recipientes que acumulem água.</p>
+    <div class="al ok"><strong>Observações:</strong> principal vetor urbano de arboviroses. O controle depende da eliminação contínua de criadouros e da participação de toda a comunidade.</div>
+  </div>
+
+  <div class="card">
+    <h3>Maruim / mosquito-pólvora — Oropouche</h3>
+    <img class="imgfull" src="ciclo_maruim_padrao.png" alt="Ciclo do maruim e febre do Oropouche">
+    <p><strong>Doenças:</strong> febre do Oropouche.</p>
+    <p><strong>Ciclo:</strong> ovo → larva → pupa → adulto, associado a locais úmidos com matéria orgânica, como folhas em decomposição, áreas alagadiças e ambientes próximos a rios, igarapés e vegetação.</p>
+    <p><strong>Cuidados:</strong> reduzir matéria orgânica acumulada, manter quintais limpos, manejar áreas úmidas e orientar proteção individual contra picadas.</p>
+    <div class="al"><strong>Observações:</strong> não é Aedes. O maruim é pequeno, tem corpo arredondado, asas com bolinhas/manchas claras e pernas sem listras. O controle é principalmente ambiental.</div>
+  </div>
+
+  <div class="card">
+    <h3>Mosquito-palha — Leishmanioses</h3>
+    <img class="imgfull" src="ciclo_mosquito_palha_padrao.png" alt="Ciclo do mosquito-palha e leishmanioses">
+    <p><strong>Doenças:</strong> leishmaniose visceral e leishmaniose tegumentar.</p>
+    <p><strong>Ciclo:</strong> ovo → larva → pupa → adulto, geralmente em solo úmido, sombreado e rico em matéria orgânica.</p>
+    <p><strong>Cuidados:</strong> limpeza de quintais, retirada de folhas, fezes e restos orgânicos, manejo de abrigos de animais, galinheiros e locais sombreados.</p>
+    <div class="al"><strong>Observações:</strong> vetor pequeno, de voo curto, mais ativo ao entardecer/noite. Na leishmaniose visceral, cães podem atuar como reservatórios, devendo ser orientado contato com a UVZ quando houver suspeita em animais.</div>
+  </div>
+
+  <div class="card">
+    <h3>Barbeiro — Doença de Chagas</h3>
+    <img class="imgfull" src="ciclo_barbeiro_padrao.png" alt="Ciclo do barbeiro e Doença de Chagas">
+    <p><strong>Doenças:</strong> Doença de Chagas, causada pelo Trypanosoma cruzi.</p>
+    <p><strong>Ciclo:</strong> o barbeiro se infecta ao sugar sangue de hospedeiros infectados. A transmissão vetorial ocorre quando as fezes contaminadas entram em contato com a pele lesionada, local da picada ou mucosas.</p>
+    <p><strong>Cuidados:</strong> não esmagar o inseto, capturar com segurança em recipiente fechado, registrar local da captura e encaminhar ao laboratório de entomologia.</p>
+    <div class="al danger"><strong>Observações:</strong> barbeiro encontrado dentro da casa ou em anexos é situação de interesse em saúde pública e deve ser comunicado à vigilância.</div>
+  </div>
+
+  <div class="card">
+    <h3>Caramujo africano e caramujo nativo</h3>
+    <img class="imgfull" src="caramujo_comparativo.png" alt="Comparativo entre caramujo africano, caramujo nativo e ovos">
+    <p><strong>Doenças:</strong> o caramujo africano pode estar associado à angiostrongilíase, incluindo meningite eosinofílica, quando contaminado por parasitas.</p>
+    <p><strong>Ciclo:</strong> o risco ocorre pelo contato com o muco contaminado ou por ingestão indireta de larvas em alimentos, água ou superfícies contaminadas.</p>
+    <p><strong>Cuidados:</strong> não manipular sem luvas, coletar também ovos visíveis, eliminar corretamente e manter quintais livres de entulho, folhas e matéria orgânica.</p>
+    <div class="al"><strong>Observações:</strong> após a morte, as conchas devem ser quebradas com proteção para evitar que virem pequenos recipientes de água parada.</div>
+  </div>
+
+  <div class="card">
+    <h3>Culex — Filariose linfática</h3>
+    <img class="imgfull" src="ciclo_culex_padrao.png" alt="Ciclo do Culex e filariose linfática">
+    <p><strong>Doenças:</strong> filariose linfática em áreas com transmissão.</p>
+    <p><strong>Ciclo:</strong> ovo → larva → pupa → adulto, geralmente em água parada poluída, valas, esgoto, fossas, lagoas e recipientes com matéria orgânica.</p>
+    <p><strong>Cuidados:</strong> melhorar saneamento, limpar valas e fossas, evitar água suja acumulada, manter caixas d’água e tonéis tampados e reduzir resíduos.</p>
+    <div class="al"><strong>Observações:</strong> é frequentemente associado às muriçocas urbanas. Aumento de muriçocas não indica automaticamente UBV.</div>
+  </div>
+
+  <div class="card">
+    <h3>Anopheles — Malária</h3>
+    <img class="imgfull" src="ciclo_anopheles_padrao.png" alt="Ciclo do Anopheles e malária">
+    <p><strong>Doenças:</strong> malária, causada por Plasmodium spp.</p>
+    <p><strong>Ciclo:</strong> ovo → larva → pupa → adulto, com desenvolvimento em águas limpas, paradas ou de fluxo lento, em ambientes adequados ao vetor.</p>
+    <p><strong>Cuidados:</strong> evitar exposição em áreas de risco, usar proteção contra picadas, manter margens e áreas alagadas sob monitoramento e orientar diagnóstico oportuno.</p>
+    <div class="al danger"><strong>Observações:</strong> febre com calafrios, sudorese e histórico de viagem/procedência de área de transmissão deve ser encaminhada imediatamente para avaliação na UBS.</div>
+  </div>
+</section>
+
+<section id="bloqueio">
+  <div class="card laranja hero"><div class="tag">Bloqueio / UBV</div><h2>Controle químico com uso racional</h2><p>Responda às perguntas antes de qualquer ação com UBV. Controle químico não substitui manejo ambiental.</p></div>
+  <div class="card laranja alg" id="alg-ubv">
+    <div class="alg-top"><strong>Decisão para UBV</strong><div class="alg-actions"><button data-target="inicio">Início</button><button data-reset="ubv">↺ Reiniciar</button></div></div>
+    <div class="pb"><div class="pf" id="prog-ubv"></div></div>
+    <div class="step ativa" data-step="1"><div class="perg">1. Há transmissão ativa ou indicação da vigilância?</div><p class="small">UBV depende de avaliação técnica do cenário epidemiológico.</p><div class="opcoes"><button class="ob" data-result="ubv:nao">Não</button><button class="ob" data-next="ubv:2">Sim</button></div></div>
+    <div class="step" data-step="2"><div class="perg">2. O problema envolve vetor-alvo de UBV, como Aedes em situação de transmissão?</div><div class="opcoes"><button class="ob" data-result="ubv:naoAlvo">Não</button><button class="ob" data-next="ubv:3">Sim</button></div></div>
+    <div class="step" data-step="3"><div class="perg">3. A área já foi avaliada e a ação indicada pela vigilância?</div><div class="opcoes"><button class="ob" data-result="ubv:comunicar">Não</button><button class="ob" data-result="ubv:indicado">Sim</button></div></div>
+    <div class="step" data-step="4"><div id="out-ubv"></div></div>
+  </div>
+<div class="card"><h3>Situações em que UBV não é indicado</h3><ul class="clean"><li>Aumento de muriçocas sem evidência epidemiológica.</li><li>Infestação de aranhas em áreas próximas a lagoas.</li><li>Baratas, moscas, escorpiões ou outros animais não alvo.</li><li>Problemas ambientais que exigem limpeza, drenagem ou manejo.</li></ul></div>
+  <div class="card"><h3>Exemplos comuns</h3><p><strong>Aumento de muriçocas:</strong> pode ocorrer em bairros próximos a lagoas, valas e áreas com água poluída. A resposta deve priorizar identificação do mosquito, avaliação ambiental, limpeza, drenagem e manejo da água.</p><p><strong>Infestação de aranhas:</strong> pode ocorrer pelo aumento de insetos que servem de alimento. O problema é ambiental, não indicação de UBV.</p><div class="al ok">Conduta adequada: avaliação ambiental, manejo do ambiente, limpeza, redução de abrigos, educação em saúde e articulação intersetorial.</div></div>
+</section>
+
+<section id="sinantropicos">
+  <div class="card az hero"><div class="tag">Orientação à população</div><h2>Animais sinantrópicos</h2><p>Conteúdo para orientar corretamente e encaminhar à UVZ.</p></div>
+  <div class="card"><p>Animais sinantrópicos vivem próximos aos seres humanos e se adaptam ao ambiente urbano, aproveitando alimento, abrigo e água.</p><div class="al"><strong>Importante:</strong> manejo de animais sinantrópicos é atribuição da UVZ, não da DCV/COVEP.</div></div>
+  <div class="card"><ul class="clean"><li>Animais domésticos errantes: cães e gatos.</li><li>Morcegos: risco de raiva; não tocar.</li><li>Pombos: acúmulo de fezes e risco respiratório.</li><li>Roedores: leptospirose e contaminação ambiental.</li><li>Baratas e moscas: contaminação de alimentos.</li><li>Escorpiões: acidentes por picada.</li></ul></div>
+</section>
+
+<section id="contatos">
+  <div class="card az hero"><div class="tag">Contatos</div><h2>Contatos de Vigilância — São Luís</h2></div>
+  <div class="card"><h3>COVEP — Coordenação de Vigilância Epidemiológica</h3><p>Av. dos Franceses, s/nº — Alemanha, São Luís/MA<br>2º piso — Sala 6<br><a href="mailto:vigilanciaepidemiologica.sves@semus.saoluis.ma.gov.br">vigilanciaepidemiologica.sves@semus.saoluis.ma.gov.br</a></p></div>
+  <div class="card"><h3>DCV — Divisão de Controle Vetorial</h3><p>DCV/COVEP/SVES<br>Av. dos Franceses, s/nº — Alemanha, São Luís/MA<br>2º piso — Sala 7<br><a href="tel:+5598992206557">(98) 99220-6557</a></p></div>
+  <div class="card"><h3>UVZ — Unidade de Vigilância em Zoonoses São Luís</h3><p>Estrada de Ribamar, nº 5 — Forquilha (antes do Eletro Mateus)<br><a href="tel:+5598991649301">(98) 99164-9301</a><br><a href="mailto:uvz.sves@semus.saoluis.ma.gov.br">uvz.sves@semus.saoluis.ma.gov.br</a><br>@uvzsaoluis</p></div>
+  <div class="card"><h3>SVES</h3><p>Av. dos Franceses, s/nº — Alemanha, São Luís/MA — CEP 65036-281<br><a href="tel:+5598991747899">(98) 99174-7899</a><br><a href="mailto:sves@semus.saoluis.ma.gov.br">sves@semus.saoluis.ma.gov.br</a></p></div>
+</section>
+
+<section id="sobre">
+  <div class="card az hero"><div class="tag">Sobre o aplicativo</div><h2>Guia de Apoio à Vigilância de Vetores — São Luís/MA</h2><p>Ferramenta pública, gratuita e sem login, desenvolvida para apoiar a atuação dos Agentes de Combate às Endemias e profissionais de saúde nas ações de vigilância e controle de vetores.</p><div class="grid" style="margin-top:20px"><div class="tile"><strong>Instalável</strong><span>Pode ser adicionado à tela inicial do celular ou desktop.</span></div><div class="tile"><strong>Sem coleta de dados</strong><span>As informações digitadas ficam apenas no dispositivo.</span></div><div class="tile"><strong>Uso offline</strong><span>Após o primeiro acesso, os arquivos essenciais ficam em cache.</span></div></div></div>
+  <div class="card"><div class="tag">Elaboração técnica</div><p><strong>Giuliane Ferreira Lopes dos Santos</strong></p><p>Coordenação de Vigilância Epidemiológica – COVEP/SVES/SEMUS São Luís-MA.</p><p class="small">Enfermeira e Sanitarista. Mestre em Saúde Coletiva pela Universidade Federal do Maranhão (UFMA). Especialista em Epidemiologia de Campo (EpiSUS Intermediário – Fiocruz). Certificada em Epidemiologia para Gestores de Saúde pela Johns Hopkins University. Atua como Coordenadora de Vigilância Epidemiológica de São Luís desde 2022.</p></div>
+  <div class="card"><div class="tag">Colaboração técnica</div><ul class="clean"><li>Marcos Vinícius Serrão Viana — Divisão de Controle Vetorial – DCV/COVEP/SVES</li><li>Pollyanna da Fonseca Silva Matsuoka — Divisão de Controle Vetorial – DCV/COVEP/SVES</li><li>Julio Cézar Maia Pereira — Divisão de Controle Vetorial – DCV/COVEP/SVES</li><li>José de Ribamar Nunes Pereira — Divisão de Controle Vetorial – DCV/COVEP/SVES</li><li>Elaine Cristina Alves da Silva — Divisão de Controle Vetorial – DCV/COVEP/SVES</li><li>Tercilândia de Cássia Rodrigues — Divisão de Controle Vetorial – DCV/COVEP/SVES</li></ul></div>
+  <div class="card"><div class="tag">Áreas técnicas envolvidas na validação do conteúdo</div><ul class="clean"><li><strong>Maria do Socorro da Silva</strong> — PMCA/DT/COVEP/SVES</li><li><strong>Neusa Maria Gonçalves Amorim</strong> — PMCT/DT/COVEP/SVES</li><li><strong>Sheila de Jesus Pereira do Nascimento</strong> — PMCE/DT/COVEP/SVES</li><li><strong>Yasminy Mylene Santos Caldas</strong> — PMCH/DT/COVEP/SVES</li><li><strong>Sônia Maria Ferreira da Silva Serra</strong> — PMCH/DT/COVEP/SVES</li><li><strong>Leila Maria de Alencar Barros Fonseca</strong> — PMVVR/DT/COVEP/SVES</li></ul></div>
+  <div class="card"><div class="tag">Publicações oficiais utilizadas</div><p class="ref">BRASIL. Ministério da Saúde. <strong>Guia de Vigilância em Saúde</strong>. Brasília, DF: Ministério da Saúde, última edição disponível.</p><p class="ref">BRASIL. Ministério da Saúde. <strong>Diretriz Nacional para Atuação Integrada dos Agentes de Combate às Endemias e Agentes Comunitários de Saúde no Território</strong>. Brasília, DF: Ministério da Saúde, 2025.</p><p class="ref">BRASIL. Ministério da Saúde. <strong>Manual de Proteção para Agentes de Combate às Endemias</strong>. Brasília, DF: Ministério da Saúde.</p><p class="ref">BRASIL. Ministério da Saúde. <strong>Diretrizes nacionais para prevenção e controle das arboviroses urbanas: vigilância entomológica e controle vetorial</strong>. Brasília, DF: Ministério da Saúde, 2025.</p></div>
+</section>
+</main>
+
+<script>
+(function(){
+  const menu = document.getElementById('menu');
+  const backdrop = document.getElementById('backdrop');
+  const menuBtn = document.getElementById('menuBtn');
+  const closeMenu = document.getElementById('closeMenu');
+
+  function abrirMenu(){ menu.classList.add('aberto'); backdrop.classList.add('aberto'); }
+  function fecharMenu(){ menu.classList.remove('aberto'); backdrop.classList.remove('aberto'); }
+
+  function show(id){
+    document.querySelectorAll('section').forEach(s => s.classList.remove('ativa'));
+    const sec = document.getElementById(id);
+    if(sec){ sec.classList.add('ativa'); }
+    document.querySelectorAll('nav a').forEach(a => a.classList.toggle('ativo', a.dataset.target === id));
+    fecharMenu();
+    window.scrollTo(0,0);
+  }
+
+  menuBtn.addEventListener('click', abrirMenu);
+  closeMenu.addEventListener('click', fecharMenu);
+  backdrop.addEventListener('click', fecharMenu);
+
+  document.querySelectorAll('[data-target]').forEach(el => {
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      show(this.dataset.target);
+    });
+  });
+
+  function parseBR(v){ return parseFloat(String(v).replace(',','.')); }
+  function fmt(v,d){ return Number(v).toFixed(d).replace('.', ','); }
+
+  function setAlgStep(prefix, n){
+    const box = document.getElementById('alg-' + prefix);
+    if(!box) return;
+    box.querySelectorAll('.step').forEach(s => s.classList.remove('ativa'));
+    const step = box.querySelector('.step[data-step="' + n + '"]');
+    if(step) step.classList.add('ativa');
+    const prog = document.getElementById('prog-' + prefix);
+    if(prog) prog.style.width = Math.min(100, n * 25) + '%';
+  }
+
+  function resetFlow(prefix){
+    const out = document.getElementById('out-' + prefix);
+    if(out) out.innerHTML = '';
+    setAlgStep(prefix, 1);
+  }
+
+  document.querySelectorAll('[data-next]').forEach(btn => {
+    btn.addEventListener('click', function(){
+      const parts = this.dataset.next.split(':');
+      setAlgStep(parts[0], parseInt(parts[1],10));
+    });
+  });
+
+  document.querySelectorAll('[data-reset]').forEach(btn => {
+    btn.addEventListener('click', function(){ resetFlow(this.dataset.reset); });
+  });
+
+  document.querySelectorAll('[data-larv-start]').forEach(btn => {
+    btn.addEventListener('click', function(){ show('larvicida'); larvStep(parseInt(this.dataset.larvStart,10)); });
+  });
+
+  document.querySelectorAll('[data-result]').forEach(btn => {
+    btn.addEventListener('click', function(){
+      const parts = this.dataset.result.split(':');
+      flowResult(parts[0], parts[1]);
+    });
+  });
+
+  function flowResult(prefix, type){
+    const out = document.getElementById('out-' + prefix);
+    let html = '';
+
+    if(prefix === 'caramujo'){
+      if(type === 'privada'){
+        html = `<div class="result"><h3>Área privada: orientar o responsável</h3><p>A coleta em área privada é responsabilidade do proprietário, morador, condomínio ou responsável pelo imóvel.</p><h3>Passo a passo para o morador</h3><ul class="clean"><li>1. Usar luvas grossas de borracha ou látex reforçado e calçado fechado.</li><li>2. Usar pá, pinça, pegador ou pedaço de madeira. Nunca pegar com a mão desprotegida.</li><li>3. Recolher caramujos vivos, mortos e ovos visíveis.</li><li>4. Colocar em balde/recipiente rígido ou saco plástico resistente duplo.</li><li>5. Adicionar sal ou cal para eliminar os caramujos.</li><li>6. Após a morte, quebrar as conchas com cuidado, usando luvas e calçado fechado, para evitar que acumulem água.</li><li>7. Colocar tudo em saco plástico resistente, bem fechado, e descartar no lixo comum.</li><li>8. Não jogar em terreno baldio, via pública, ralo, esgoto ou corpo d’água.</li><li>9. Retirar entulho, folhas, madeira, objetos abandonados e matéria orgânica.</li><li>10. Lavar bem as mãos e utensílios com água e sabão.</li></ul><div class="al danger">Não quebrar conchas com as mãos ou pés e não manipular sem proteção. Evitar contato com o muco.</div></div>`;
+      } else {
+        html = `<div class="result"><h3>Conduta: coleta em área pública</h3><p><strong>EPIs:</strong> luvas de proteção, botas e farda completa. Em grande quantidade, considerar óculos de proteção.</p><p><strong>Insumos:</strong> pinça/pegador/pá pequena, balde ou recipiente rígido com tampa, saco resistente, etiqueta/ficha e caneta.</p><ul class="clean"><li>1. Colocar EPIs antes de iniciar.</li><li>2. Coletar com instrumento, sem tocar diretamente.</li><li>3. Coletar também ovos visíveis e caramujos mortos, se houver orientação técnica.</li><li>4. Acondicionar em recipiente seguro e identificado.</li><li>5. Registrar endereço, ponto, data, quantidade aproximada e agente.</li><li>6. Encaminhar conforme fluxo da malacologia/DCV.</li></ul></div>`;
+      }
+      out.innerHTML = html; setAlgStep(prefix, 3); return;
+    }
+
+    if(prefix === 'inseto'){
+      if(type === 'semVinculo'){
+        html = `<div class="result"><h3>Coleta não indicada</h3><p>Sem vínculo com evento de saúde pública, não coletar automaticamente. Orientar o morador e registrar se necessário.</p></div>`;
+      } else if(type === 'indisponivel'){
+        html = `<div class="result"><h3>Orientar nova captura</h3><p>Se o inseto reaparecer e houver vínculo com evento de saúde pública, orientar guardar em pote/frasco fechado, sem esmagar, e comunicar a equipe.</p></div>`;
+      } else if(type === 'danificado'){
+        html = `<div class="result"><h3>Amostra inadequada</h3><p>Inseto esmagado pode impedir a identificação. Orientar nova captura segura, se a situação persistir.</p></div>`;
+      } else {
+        html = `<div class="result"><h3>Coleta qualificada indicada</h3><p><strong>EPIs:</strong> luvas e farda. Usar óculos se houver risco de contato.</p><p><strong>Insumos:</strong> frasco ou pote com tampa, etiqueta/ficha, caneta.</p><ul class="clean"><li>1. Capturar sem esmagar e sem contato direto.</li><li>2. Acondicionar em recipiente fechado.</li><li>3. Identificar endereço, local da captura, data e situação observada.</li><li>4. Comunicar área técnica/DCV antes de envio se houver dúvida.</li><li>5. Encaminhar ao laboratório de entomologia quando houver suspeita de vetor, investigação em andamento ou orientação técnica.</li></ul></div>`;
+      }
+      out.innerHTML = html; setAlgStep(prefix, 4); return;
+    }
+
+    if(prefix === 'mosquito'){
+      if(type === 'semAgua'){
+        html = `<div class="result"><h3>Sem foco identificado</h3><p>Orientar morador e avaliar se o incômodo pode estar associado a outro vetor ou problema ambiental.</p></div>`;
+      } else if(type === 'eliminar'){
+        html = `<div class="result"><h3>Eliminar ou corrigir o criadouro</h3><ul class="clean"><li>Esvaziar, virar, tampar, proteger ou descartar o recipiente.</li><li>Orientar limpeza semanal e armazenamento correto de água.</li><li>Registrar conforme rotina.</li></ul></div>`;
+      } else if(type === 'larvicida'){
+        html = `<div class="result"><h3>Depósito não eliminável</h3><p>Aplicação de larvicida pode ser indicada conforme rotina técnica.</p><button class="btn" data-target="larvicida">Ir para cálculo de dose de larvicida</button></div>`;
+      } else {
+        html = `<div class="result"><h3>Avaliação técnica necessária</h3><p>Não aplicar produto automaticamente. Avaliar tipo de depósito, uso da água e orientação da supervisão/DCV.</p></div>`;
+      }
+      out.innerHTML = html;
+      out.querySelectorAll('[data-target]').forEach(el => el.addEventListener('click', function(){ show(this.dataset.target); }));
+      setAlgStep(prefix, 4); return;
+    }
+
+    if(prefix === 'barbeiro'){
+      if(type === 'indisponivel'){
+        html = `<div class="result"><h3>Orientar morador</h3><p>Se encontrar novamente, não esmagar. Capturar com pote ou frasco, sem tocar diretamente, e informar local exato onde apareceu.</p></div>`;
+      } else {
+        const risco = type === 'intradomicilio' ? 'maior atenção por ter sido encontrado dentro da casa' : 'avaliar anexos, galinheiros, depósitos e abrigos de animais';
+        html = `<div class="result"><h3>Coleta e identificação</h3><p><strong>Atenção:</strong> ${risco}.</p><ul class="clean"><li>Não esmagar e não aplicar inseticida na amostra.</li><li>Capturar com pote/frasco, sem contato direto.</li><li>Registrar endereço, cômodo/local, data e condições do imóvel.</li><li>Verificar frestas, telhados, galinheiros e abrigos de animais.</li><li>Encaminhar ao laboratório de entomologia para identificação da espécie e avaliação de interesse em saúde pública.</li></ul></div>`;
+      }
+      out.innerHTML = html; setAlgStep(prefix, 3); return;
+    }
+
+    if(prefix === 'ubv'){
+      if(type === 'nao'){
+        html = `<div class="result"><h3>UBV não indicado</h3><p>Sem vários casos no mesmo lugar em pouco tempo ou transmissão ativa, priorizar orientação, vigilância e manejo ambiental.</p></div>`;
+      } else if(type === 'naoAlvo'){
+        html = `<div class="result"><h3>UBV não indicado</h3><p>O problema não envolve vetor-alvo. Para muriçocas, aranhas, baratas ou outros animais não alvo, priorizar avaliação ambiental e manejo.</p></div>`;
+      } else if(type === 'comunicar'){
+        html = `<div class="result"><h3>Comunicar antes de agir</h3><p>Acione a DCV para avaliação técnica antes de qualquer aplicação.</p><p><strong>DCV:</strong> (98) 99220-6557<br><strong>COVEP:</strong> vigilanciaepidemiologica.sves@semus.saoluis.ma.gov.br</p></div>`;
+      } else {
+        html = `<div class="result"><h3>UBV pode ser indicado</h3><p>Executar apenas conforme orientação técnica, com equipe treinada, equipamento adequado, produto autorizado e registro da ação.</p></div>`;
+      }
+      out.innerHTML = html; setAlgStep(prefix, 4); return;
+    }
+  }
+
+  function larvStep(n){
+    const box = document.getElementById('alg-larvicida');
+    box.querySelectorAll('.step').forEach(s => s.classList.remove('ativa'));
+    box.querySelector('.step[data-step="' + n + '"]').classList.add('ativa');
+    document.getElementById('prog-larvicida').style.width = Math.min(100, n * 16.66) + '%';
+  }
+  function resetLarv(){
+    document.querySelectorAll('#alg-larvicida input').forEach(i => i.value = '');
+    document.getElementById('doseBox').innerHTML = '';
+    larvStep(1);
+  }
+  document.querySelectorAll('[data-next-larv]').forEach(btn => btn.addEventListener('click', function(){ larvStep(parseInt(this.dataset.nextLarv,10)); }));
+  document.getElementById('resetLarv').addEventListener('click', resetLarv);
+  document.getElementById('resetLarv2').addEventListener('click', resetLarv);
+  document.getElementById('larvStop').addEventListener('click', function(){
+    document.getElementById('doseBox').innerHTML = '<div class="result"><h3>Conduta</h3><p>Eliminar ou corrigir o criadouro. Não aplicar larvicida quando o depósito pode ser removido, protegido ou corrigido.</p></div>';
+    larvStep(6);
+  });
+  document.querySelectorAll('[data-dose]').forEach(btn => btn.addEventListener('click', function(){ resultadoDose(parseFloat(this.dataset.dose)); }));
+  document.getElementById('calcRet').addEventListener('click', function(){
+    const c=parseBR(document.getElementById('comp').value), l=parseBR(document.getElementById('larg').value), a=parseBR(document.getElementById('altRet').value);
+    if(!c || !l || !a){ alert('Preencha todas as medidas em centímetros.'); return; }
+    resultadoDose((c*l*a)/1000);
+  });
+  document.getElementById('calcCil').addEventListener('click', function(){
+    const d=parseBR(document.getElementById('diam').value), a=parseBR(document.getElementById('altCil').value);
+    if(!d || !a){ alert('Preencha todas as medidas em centímetros.'); return; }
+    resultadoDose((d*d*a*0.785)/1000);
+  });
+  function resultadoDose(v){
+    const dose = v/10;
+    const colheres = Math.round(dose);
+    document.getElementById('doseBox').innerHTML = `<div class="result"><h3>Resultado da dosimetria</h3><p>Volume estimado/calculado:</p><div class="big">${fmt(v,0)} L</div><p>Dose de VectoBac WG:</p><div class="big">${fmt(dose,1)} g</div><p><strong>Aplicar: ${colheres} medida(s) rasa(s) da colher dosadora.</strong></p><hr style="border:0;border-top:1px solid #b9dff3;margin:14px 0"><p><strong>Como medir o produto:</strong> a colher dosadora padrão que acompanha o produto equivale, quando cheia e nivelada, a aproximadamente 1 grama (1 g).</p><ul class="clean" style="margin-top:10px"><li>Use a colher dosadora fornecida pelo fabricante.</li><li>Nivele a colher com espátula ou dorso de faca.</li><li>Não use colher “montanhosa” ou compactada.</li><li>Evite contato direto com a pele e utilize EPIs adequados.</li></ul></div>`;
+    larvStep(6);
+  }
+
+  if('serviceWorker' in navigator){
+    window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js'));
+  }
+
+  window.showPage = show;
+})();
+</script>
+</body>
+</html>
