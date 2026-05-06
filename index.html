@@ -39,6 +39,25 @@ label{font-weight:700;color:#444;font-size:13px;margin-top:8px;display:block}inp
 .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.btn{border:0;background:var(--azul);color:#fff;border-radius:12px;padding:11px 16px;font-weight:700;cursor:pointer}.btn2{border:1px solid #d7d3cb;background:#fff;color:#333;border-radius:12px;padding:11px 16px;font-weight:700;cursor:pointer}
 .result{background:#E6F4FB;border:1.5px solid var(--azul2);border-radius:16px;padding:18px}.big{font-family:"Courier New",monospace;font-size:25px;color:var(--azul);font-weight:700;margin:4px 0}.imgfull{width:100%;border-radius:14px;margin:10px 0;border:1px solid var(--borda)}
 @media(min-width:640px){.grid{grid-template-columns:1fr 1fr}.brand img{max-height:72px}.hero h2{font-size:28px}}
+
+/* Módulo Ovitrampas */
+.ov-panel{display:none}.ov-panel.active{display:block}.armadilhas-home-hidden{display:none}.ov-img{width:100%;max-width:260px;border-radius:16px;margin:12px auto 8px;box-shadow:0 2px 8px rgba(0,0,0,.12);border:1px solid #dcdcdc;display:block}
+.ov-alg-head{background:var(--azul);color:#fff;border-radius:22px 22px 0 0;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:18px}
+.ov-alg-head h3{margin:0;color:#fff;font-size:19px}
+.ov-restart{border:0;border-radius:999px;background:#fff;color:var(--azul);padding:10px 14px;font-weight:900;cursor:pointer}
+.ov-alg-body{background:#fff;border:1px solid var(--borda);border-top:0;border-left:7px solid var(--azul);border-radius:0 0 22px 22px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.ov-progress{height:8px;background:#e6e6e6;border-radius:999px;overflow:hidden;margin:4px 0 18px}
+.ov-bar{height:100%;background:var(--azul2);width:0%;transition:.25s}
+.ov-question{font-size:24px;color:var(--azul);font-weight:900;line-height:1.15;margin:10px 0 16px}
+.ov-options{display:grid;gap:10px}
+.ov-opt{border:1px solid var(--borda);border-left:7px solid var(--azul);border-radius:20px;background:#fff;padding:18px;text-align:left;box-shadow:0 3px 12px rgba(0,0,0,.06);cursor:pointer;width:100%}
+.ov-opt strong{display:block;color:var(--azul);font-size:20px;margin-bottom:5px}
+.ov-orient{margin-top:16px}
+.ov-result{background:#eef8ff;border:2px solid #77c5ee;border-radius:18px;padding:18px;margin-top:18px}
+.ov-result h3{color:var(--azul);font-size:22px;margin:0 0 10px}
+.ov-back{border:0;background:#e9eef5;color:var(--azul);border-radius:999px;padding:10px 14px;font-weight:900;cursor:pointer;margin-top:12px}
+@media(min-width:720px){.ov-options{grid-template-columns:1fr 1fr}}
+
 </style>
 </head>
 <body>
@@ -187,9 +206,53 @@ label{font-weight:700;color:#444;font-size:13px;margin-top:8px;display:block}inp
   </div>
 </section>
 
+
 <section id="armadilha">
-  <div class="card verde hero"><div class="tag">Em construção</div><h2>Instalar armadilha</h2><p>Existem vários tipos de armadilhas e cada uma exige detalhamento técnico próprio. Este módulo ficará disponível após validação da área técnica.</p></div>
-  <div class="card"><h3>Conteúdo previsto</h3><ul class="clean"><li>Ovitrampas.</li><li>Armadilhas para mosquitos adultos.</li><li>Armadilhas para flebotomíneos.</li><li>Registro, instalação, retirada, acondicionamento e encaminhamento.</li></ul></div>
+  <div id="armadilhas-home">
+<div class="card verde hero">
+    <div class="tag">Módulo em construção</div>
+    <h2>Instalar armadilha</h2>
+    <p>Existem vários tipos de armadilhas e cada uma exige detalhamento técnico próprio. Este módulo continuará marcado como em construção até que todas sejam validadas.</p>
+    <div class="al warn"><strong>Disponível nesta versão:</strong> algoritmo operacional de ovitrampas.</div>
+  </div>
+
+  <div class="grid">
+    <button class="tile" style="border-left-color:#00AEEF" onclick="openOvitrampaPanel()">
+      <strong>Ovitrampas</strong>
+      <span>Preparação, instalação, manutenção, transporte e laboratório</span>
+    </button>
+    <button class="tile disabled" style="border-left-color:#00529B">
+      <strong>EDL — Estações Disseminadoras de Larvicida</strong>
+      <span>Em construção</span>
+    </button>
+    <button class="tile disabled" style="border-left-color:#5EA88C">
+      <strong>Armadilhas para adultos</strong>
+      <span>Em construção</span>
+    </button>
+  </div>
+
+  
+  </div>
+
+  <div id="ovitrampa-panel" class="ov-panel">
+  <button class="ov-back" onclick="backToArmadilhasHome()">← Voltar para tipos de armadilhas</button>
+<div class="card azul2">
+    <div class="tag">Ovitrampas</div>
+    <h2>Algoritmo operacional para ACE</h2>
+    <p>Responda uma pergunta por vez. Abaixo de cada pergunta aparecem orientações específicas da etapa.</p>
+    <div class="al ok"><strong>Objetivo:</strong> apoiar preparação, instalação, manutenção, transporte e processamento laboratorial das ovitrampas.</div>
+  </div>
+
+  <div class="ov-alg-head">
+    <h3>Algoritmo de ovitrampas</h3>
+    <button class="ov-restart" onclick="openOvitrampaPanel()">↻ Reiniciar</button>
+  </div>
+  <div class="ov-alg-body">
+    <div class="ov-progress"><div id="ov-bar" class="ov-bar"></div></div>
+    <div id="ov-alg"></div>
+  </div>
+
+  </div>
 </section>
 
 <section id="monitoramento">
@@ -314,6 +377,14 @@ label{font-weight:700;color:#444;font-size:13px;margin-top:8px;display:block}inp
   <div class="card"><div class="tag">Colaboração técnica</div><ul class="clean"><li>Marcos Vinícius Serrão Viana — Divisão de Controle Vetorial – DCV/COVEP/SVES</li><li>Pollyanna da Fonseca Silva Matsuoka — Divisão de Controle Vetorial – DCV/COVEP/SVES</li><li>Julio Cézar Maia Pereira — Divisão de Controle Vetorial – DCV/COVEP/SVES</li><li>José de Ribamar Nunes Pereira — Divisão de Controle Vetorial – DCV/COVEP/SVES</li><li>Elaine Cristina Alves da Silva — Divisão de Controle Vetorial – DCV/COVEP/SVES</li><li>Tercilândia de Cássia Rodrigues — Divisão de Controle Vetorial – DCV/COVEP/SVES</li></ul></div>
   <div class="card"><div class="tag">Áreas técnicas envolvidas na validação do conteúdo</div><ul class="clean"><li><strong>Maria do Socorro da Silva</strong> — PMCA/DT/COVEP/SVES</li><li><strong>Neusa Maria Gonçalves Amorim</strong> — PMCT/DT/COVEP/SVES</li><li><strong>Sheila de Jesus Pereira do Nascimento</strong> — PMCE/DT/COVEP/SVES</li><li><strong>Yasminy Mylene Santos Caldas</strong> — PMCH/DT/COVEP/SVES</li><li><strong>Sônia Maria Ferreira da Silva Serra</strong> — PMCH/DT/COVEP/SVES</li><li><strong>Leila Maria de Alencar Barros Fonseca</strong> — PMVVR/DT/COVEP/SVES</li></ul></div>
   <div class="card"><div class="tag">Publicações oficiais utilizadas</div><p class="ref">BRASIL. Ministério da Saúde. <strong>Guia de Vigilância em Saúde</strong>. Brasília, DF: Ministério da Saúde, última edição disponível.</p><p class="ref">BRASIL. Ministério da Saúde. <strong>Diretriz Nacional para Atuação Integrada dos Agentes de Combate às Endemias e Agentes Comunitários de Saúde no Território</strong>. Brasília, DF: Ministério da Saúde, 2025.</p><p class="ref">BRASIL. Ministério da Saúde. <strong>Manual de Proteção para Agentes de Combate às Endemias</strong>. Brasília, DF: Ministério da Saúde.</p><p class="ref">BRASIL. Ministério da Saúde. <strong>Diretrizes nacionais para prevenção e controle das arboviroses urbanas: vigilância entomológica e controle vetorial</strong>. Brasília, DF: Ministério da Saúde, 2025.</p></div>
+
+<div class="card">
+  <h3>Referências específicas — módulo Armadilhas/Ovitrampas</h3>
+  <ul class="clean">
+    <li>BRASIL. Ministério da Saúde. Secretaria de Vigilância em Saúde e Ambiente. Nota Técnica nº 3/2025-CGARB/DEDT/SVSA/MS. Implementação da estratégia de Vigilância Entomológica de <em>Aedes aegypti</em> e <em>Aedes albopictus</em> com armadilhas ovitrampas para o território nacional.</li>
+    <li>LIMA, J. B. P. Metodologia para amostragem de <em>Aedes aegypti</em> por meio de armadilhas de postura (ovitrampas). Instituto Oswaldo Cruz/Fiocruz; Ministério da Saúde.</li>
+  </ul>
+</div>
 </section>
 </main>
 
@@ -537,6 +608,135 @@ label{font-weight:700;color:#444;font-size:13px;margin-top:8px;display:block}inp
     document.getElementById('doseBox').innerHTML = `<div class="result"><h3>Resultado da dosimetria</h3><p>Volume estimado/calculado:</p><div class="big">${fmt(v,0)} L</div><p>Dose de VectoBac WG:</p><div class="big">${fmt(dose,1)} g</div><p><strong>Aplicar: ${colheres} medida(s) rasa(s) da colher dosadora.</strong></p><hr style="border:0;border-top:1px solid #b9dff3;margin:14px 0"><p><strong>Como medir o produto:</strong> a colher dosadora padrão que acompanha o produto equivale, quando cheia e nivelada, a aproximadamente 1 grama (1 g).</p><ul class="clean" style="margin-top:10px"><li>Use a colher dosadora fornecida pelo fabricante.</li><li>Nivele a colher com espátula ou dorso de faca.</li><li>Não use colher “montanhosa” ou compactada.</li><li>Evite contato direto com a pele e utilize EPIs adequados.</li></ul></div>`;
     larvStep(6);
   }
+
+
+
+  function openOvitrampaPanel(){
+    const panel = document.getElementById('ovitrampa-panel');
+    const home = document.getElementById('armadilhas-home');
+    if(home) home.classList.add('armadilhas-home-hidden');
+    if(panel){
+      panel.classList.add('active');
+      startOvitrampa('inicio');
+      panel.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  }
+  function backToArmadilhasHome(){
+    const panel = document.getElementById('ovitrampa-panel');
+    const home = document.getElementById('armadilhas-home');
+    if(panel) panel.classList.remove('active');
+    if(home) {
+      home.classList.remove('armadilhas-home-hidden');
+      home.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  }
+  window.openOvitrampaPanel = openOvitrampaPanel;
+  window.backToArmadilhasHome = backToArmadilhasHome;
+
+
+  // Módulo Ovitrampas
+  const ovStack = [];
+  const ovSteps = {
+    inicio:{p:5,q:'O que você veio fazer agora?',o:[['Instalar nova ovitrampa','materiais'],['Fazer manutenção / recolhimento','prazo'],['Processar palhetas no laboratório','labRecebimento'],['Consultar indicadores e resposta operacional','indicadores']],info:`<div class="al"><strong>Escolha o fluxo correto.</strong> Instalação nova exige consentimento, montagem e georreferenciamento. Manutenção exige checar prazo, ocorrências, recolher palheta e substituir material. Laboratório envolve secagem, contagem e registro.</div>`},
+
+    materiais:{p:10,q:'Antes de sair, você está com todos os materiais necessários?',o:[['Sim, materiais completos','palhetasPreparadas'],['Não, falta material','faltamMateriais']],info:`<div class="al warn"><strong>Checklist mínimo:</strong><ul class="clean"><li>Ovitrampas pretas identificadas.</li><li>Palhetas de Eucatex® preparadas e identificadas.</li><li>Clipes.</li><li>Água limpa.</li><li>Solução de levedo.</li><li>Etiquetas e fita transparente para impermeabilização.</li><li>Boletim de campo.</li><li>Termo de consentimento padrão SEMUS.</li><li>Caneta.</li><li>Celular com TimeStamp funcionando.</li><li>Caixa/isopor para transporte, se houver recolhimento.</li></ul></div>`},
+    faltamMateriais:{p:10,result:true,title:'Não sair para instalação sem material completo',html:`<p>Regularize o material antes de iniciar o roteiro. A instalação incompleta compromete o monitoramento e pode gerar perda de ponto.</p><div class="al danger"><strong>Prioridade:</strong> termo de consentimento, palheta preparada, solução atrativa, identificação e boletim de campo.</div>`},
+
+    palhetasPreparadas:{p:15,q:'As palhetas já foram preparadas com antecedência?',o:[['Sim, ficaram 24h de molho e secaram completamente','atrativoPronto'],['Não','prepararPalheta']],info:`<img class="ov-img" src="ovit_palhetas_molho.png" alt="Palhetas de molho"><div class="al"><strong>Orientação:</strong> a preparação começa pelo menos 2 dias antes da instalação. As palhetas devem ficar 24 horas em água limpa para remover resíduos de serragem e depois secar completamente.</div>`},
+    prepararPalheta:{p:15,result:true,title:'Preparar palhetas antes de instalar',html:`<ol><li>Mergulhar as palhetas em água limpa por 24 horas.</li><li>Retirar e deixar secar completamente.</li><li>Identificar a extremidade da palheta com código da armadilha, código IBGE e data.</li></ol><div class="al danger"><strong>Não instalar</strong> palheta sem preparo adequado.</div>`},
+
+    atrativoPronto:{p:20,q:'A solução atrativa de levedo está pronta e fechada para transporte?',o:[['Sim','chegadaImovel'],['Não','prepararAtrativo']],info:`<img class="ov-img" src="ovit_levedo.png" alt="Solução de levedo"><div class="al"><strong>Preparo do atrativo:</strong> adicionar 6 g de levedo de cerveja, ou 2 colheres de sopa, em tubo Falcon de 50 ml. Completar com água limpa até 50 ml e manter fechado durante o transporte.</div>`},
+    prepararAtrativo:{p:20,result:true,title:'Preparar solução atrativa',html:`<ol><li>Adicionar 6 g de levedo de cerveja no tubo Falcon de 50 ml.</li><li>Completar com água limpa até a marca de 50 ml.</li><li>Manter o frasco fechado até o uso no campo.</li></ol><div class="al warn"><strong>No campo:</strong> usar 1 ml da solução em cada ovitrampa.</div>`},
+
+    chegadaImovel:{p:25,q:'O morador autorizou a instalação?',o:[['Sim, autorizou','termoAssinado'],['Não autorizou','recusaMorador']],info:`<div class="al"><strong>Cola rápida para orientar o morador:</strong><br>“Esta é uma armadilha da Vigilância para monitorar a presença do mosquito da dengue no território. Ela não é veneno, não oferece risco quando mantida no local correto e ajuda a direcionar as ações de prevenção. Pedimos que não mexa, não retire a água, não mova e aguarde nossa próxima visita.”</div>`},
+    recusaMorador:{p:25,result:true,title:'Não instalar sem autorização',html:`<p>Registrar a recusa no boletim de campo e seguir para o próximo ponto conforme orientação da supervisão.</p><div class="al danger"><strong>Importante:</strong> a instalação depende do consentimento do morador ou responsável pelo imóvel.</div>`},
+
+    termoAssinado:{p:30,q:'O termo de consentimento padrão SEMUS foi assinado?',o:[['Sim, termo assinado','localAdequado'],['Não','semTermo']],info:`<div class="al warn"><strong>Orientação:</strong> o termo deve ser assinado antes da instalação e guardado junto ao boletim/fichas do roteiro. Confirme se os dados do imóvel e responsável estão legíveis.</div>`},
+    semTermo:{p:30,result:true,title:'Não instalar sem termo assinado',html:`<p>Explique novamente o objetivo ao morador. Se ainda assim não houver assinatura, não instalar e registrar a ocorrência.</p>`},
+
+    localAdequado:{p:40,q:'O local escolhido está protegido de sol, chuva, crianças e animais?',o:[['Sim, local adequado','montagem'],['Não, preciso escolher outro ponto','localInadequado']],info:`<img class="ov-img" src="ovit_instalacao_local.png" alt="Instalação da ovitrampa"><div class="al"><strong>Por que precisa ser protegido?</strong><ul class="clean"><li>Sol forte evapora a água.</li><li>Chuva altera o volume e dilui o atrativo.</li><li>Crianças e animais podem derrubar ou retirar a armadilha.</li><li>Local movimentado aumenta perda e movimentação.</li></ul></div><div class="al ok"><strong>Preferir:</strong> peridomicílio, local sombreado/protegido, pouco movimentado e no mesmo ponto até a coleta.</div>`},
+    localInadequado:{p:40,result:true,title:'Escolha outro ponto com o morador',html:`<p>Procure um local protegido da chuva e do sol, fora do alcance de crianças e animais, e com menor risco de movimentação.</p><div class="al warn"><strong>Depois de instalado:</strong> a armadilha deve permanecer no mesmo local até a coleta.</div>`},
+
+    montagem:{p:50,q:'A ovitrampa foi montada corretamente?',o:[['Sim, montar e seguir para foto','fotoTimestamp'],['Quero ver o passo a passo','passoMontagem']],info:`<img class="ov-img" src="ovit_montagem.png" alt="Ovitrampa montada"><div class="al"><strong>Conferir montagem:</strong><ol><li>Palheta presa com clipe.</li><li>Lado áspero voltado para o centro da armadilha.</li><li>300 ml de água limpa.</li><li>1 ml da solução de levedo.</li><li>Pote e palheta com identificação correspondente.</li></ol></div>`},
+    passoMontagem:{p:50,result:true,title:'Passo a passo da montagem',html:`<ol><li>Fixar a palheta no pote com clipe.</li><li>Manter o lado áspero voltado para dentro.</li><li>Adicionar 300 ml de água limpa.</li><li>Adicionar 1 ml de solução de levedo.</li><li>Conferir etiqueta do pote e da palheta.</li></ol><div class="al ok">Depois de montar, faça foto georreferenciada com TimeStamp.</div>`},
+
+    fotoTimestamp:{p:60,q:'A foto georreferenciada com TimeStamp foi realizada?',o:[['Sim, foto feita','orientarMorador'],['Não','fazerFoto']],info:`<div class="al"><strong>A foto deve mostrar:</strong><ul class="clean"><li>armadilha instalada;</li><li>ambiente ao redor;</li><li>data e hora;</li><li>latitude e longitude.</li></ul>A foto comprova o ponto de instalação, apoia o georreferenciamento e facilita o retorno da equipe.</div>`},
+    fazerFoto:{p:60,result:true,title:'Faça a foto antes de sair',html:`<p>Abra o TimeStamp, enquadre a ovitrampa instalada e o ambiente ao redor, confira se latitude e longitude aparecem na imagem e registre no boletim.</p>`},
+
+    orientarMorador:{p:70,q:'O morador foi orientado sobre a próxima visita e cuidados?',o:[['Sim, finalizar instalação','instalacaoFinal'],['Não, mostrar orientação','colaFinal']],info:`<div class="al warn"><strong>Orientar antes de sair:</strong><ul class="clean"><li>não mexer;</li><li>não retirar água;</li><li>não lavar;</li><li>não mudar de lugar;</li><li>evitar acesso de crianças e animais;</li><li>avisar se cair, secar, quebrar ou desaparecer;</li><li>informar data da próxima visita.</li></ul></div>`},
+    colaFinal:{p:70,result:true,title:'Orientação final ao morador',html:`<p>“A equipe retornará na data combinada para trocar ou recolher a palheta. Até lá, pedimos que a armadilha permaneça neste mesmo local, sem mexer, lavar ou retirar a água.”</p>`},
+    instalacaoFinal:{p:100,result:true,title:'Instalação concluída',html:`<ul class="clean"><li>Termo assinado.</li><li>Ovitrampa instalada e identificada.</li><li>Foto georreferenciada realizada.</li><li>Boletim preenchido.</li><li>Morador orientado.</li></ul><div class="al ok"><strong>Próximo passo:</strong> retornar para vistoria/troca em 5 dias.</div>`},
+
+    prazo:{p:15,q:'A vistoria está dentro do prazo de 5 dias?',o:[['Sim, dentro do prazo','integridade'],['Não, passou do prazo','atraso']],info:`<div class="al danger"><strong>Atenção:</strong> não ultrapassar o prazo. Após o período recomendado, a armadilha pode se tornar criadouro. Se a pesquisa for interrompida, a armadilha deve ser recolhida.</div>`},
+    atraso:{p:15,q:'A armadilha ainda está no local?',o:[['Sim, recolher imediatamente','integridade'],['Não, desapareceu','ocorrenciaDesapareceu']],info:`<div class="al danger"><strong>Conduta:</strong> registrar atraso no boletim e recolher/substituir conforme orientação técnica. Avaliar validade da amostra com a supervisão/entomologia.</div>`},
+
+    integridade:{p:30,q:'A armadilha está íntegra e com palheta/água?',o:[['Sim, íntegra','trocaPalheta'],['Não, houve ocorrência','tipoOcorrencia']],info:`<div class="al"><strong>Verifique:</strong> pote quebrado, sem água, sem palheta, palheta caída, armadilha removida, adulterada, local alterado ou acesso de criança/animal.</div>`},
+    tipoOcorrencia:{p:30,q:'Qual ocorrência foi encontrada?',o:[['Sem água','ocorrenciaSemAgua'],['Sem palheta / palheta caída','ocorrenciaPalheta'],['Quebrada','ocorrenciaQuebrada'],['Desaparecida','ocorrenciaDesapareceu'],['Local inadequado ou movimentado','ocorrenciaLocal']],info:`<div class="al warn"><strong>Registre sempre</strong> a ocorrência no boletim antes de qualquer substituição ou recolhimento.</div>`},
+    ocorrenciaSemAgua:{p:35,result:true,title:'Ocorrência: armadilha sem água',html:`<p>Registrar no boletim. Avaliar com a supervisão/entomologia se a palheta será considerada válida. Substituir água, atrativo e palheta se a armadilha permanecer no ponto.</p>`},
+    ocorrenciaPalheta:{p:35,result:true,title:'Ocorrência: palheta ausente ou caída',html:`<p>Registrar perda/ocorrência. Substituir a palheta identificada se houver continuidade da armadilha no ponto.</p>`},
+    ocorrenciaQuebrada:{p:35,result:true,title:'Ocorrência: armadilha quebrada',html:`<p>Recolher o material, registrar no boletim e substituir a armadilha se o local continuar adequado e autorizado.</p>`},
+    ocorrenciaDesapareceu:{p:35,result:true,title:'Ocorrência: armadilha desaparecida',html:`<p>Registrar perda no boletim e comunicar supervisão. Reinstalar apenas se houver autorização, termo e condições adequadas.</p>`},
+    ocorrenciaLocal:{p:35,result:true,title:'Ocorrência: local inadequado ou armadilha movimentada',html:`<p>Registrar ocorrência. Reorientar o morador e escolher novo local protegido, se a armadilha for mantida.</p>`},
+
+    trocaPalheta:{p:50,q:'Você já recolheu a palheta?',o:[['Sim, palheta recolhida','descarteAgua'],['Não, mostrar procedimento','procedimentoRecolher']],info:`<div class="al"><strong>Ao recolher:</strong> manter a palheta na vertical, com a etiqueta para cima, evitando molhar os ovos.</div>`},
+    procedimentoRecolher:{p:50,result:true,title:'Procedimento de recolhimento da palheta',html:`<ol><li>Retirar a palheta com cuidado.</li><li>Manter etiqueta para cima.</li><li>Não raspar, dobrar ou molhar a palheta.</li><li>Acondicionar para transporte vertical.</li></ol>`},
+
+    descarteAgua:{p:60,q:'A água da ovitrampa foi descartada corretamente no solo?',o:[['Sim','lavagem'],['Não sei / preciso de orientação','orientaDescarte']],info:`<div class="al danger"><strong>Nunca descartar em ralos, pias, vasos sanitários ou recipientes.</strong> A água pode conter ovos viáveis. O descarte deve ser no solo, terra ou chão de cimento, preferencialmente exposto.</div>`},
+    orientaDescarte:{p:60,result:true,title:'Como descartar a água',html:`<p>Descarte a água no solo/terra ou chão de cimento. Não descarte em ralos, pias, vasos sanitários ou recipientes que acumulem água.</p>`},
+
+    lavagem:{p:70,q:'O recipiente foi lavado antes da nova palheta?',o:[['Sim','novaMontagem'],['Não','orientaLavagem']],info:`<div class="al"><strong>Por que lavar?</strong> Pode haver ovos aderidos ao recipiente. Lavar com esponja ajuda a remover ovos remanescentes. A água da lavagem também deve ser descartada no solo.</div>`},
+    orientaLavagem:{p:70,result:true,title:'Lavar antes de reinstalar',html:`<ol><li>Lavar o recipiente com esponja.</li><li>Descartar a água da lavagem no solo.</li><li>Somente depois colocar nova palheta, água e atrativo.</li></ol>`},
+    novaMontagem:{p:80,q:'Foi colocada nova palheta, água e atrativo?',o:[['Sim, manutenção concluída','transporte'],['Não, mostrar passo a passo','passoNovaMontagem']],info:`<div class="al ok"><strong>Nova montagem:</strong> palheta identificada + 300 ml de água limpa + 1 ml de solução de levedo + conferência do código da armadilha.</div>`},
+    passoNovaMontagem:{p:80,result:true,title:'Substituição da palheta e solução',html:`<ol><li>Colocar nova palheta com lado áspero para dentro.</li><li>Adicionar 300 ml de água limpa.</li><li>Adicionar 1 ml da solução de levedo.</li><li>Conferir identificação.</li><li>Orientar novamente o morador.</li></ol>`},
+
+    transporte:{p:90,q:'As palhetas foram acondicionadas corretamente para transporte?',o:[['Sim','manutencaoFinal'],['Não, mostrar orientação','orientaTransporte']],info:`<div class="al"><strong>Transporte correto:</strong><ul class="clean"><li>palhetas na vertical;</li><li>etiqueta para cima;</li><li>sem molhar ovos;</li><li>sem dobrar ou raspar;</li><li>em pote vazio, caixa rígida ou isopor limpo com espuma/suporte.</li></ul></div>`},
+    orientaTransporte:{p:90,result:true,title:'Como transportar palhetas',html:`<p>Use recipiente rígido ou isopor. Uma opção é caixa de isopor limpa com espuma cortada no fundo para fixar as palhetas na vertical. Mantenha etiqueta para cima e evite movimentação.</p>`},
+    manutencaoFinal:{p:100,result:true,title:'Manutenção / recolhimento concluído',html:`<ul class="clean"><li>Palheta recolhida e acondicionada.</li><li>Água descartada no solo.</li><li>Recipiente lavado.</li><li>Nova palheta/solução instalada, quando aplicável.</li><li>Ocorrências registradas.</li><li>Morador orientado.</li></ul><div class="al ok"><strong>Próximo passo:</strong> encaminhar palhetas ao laboratório, preferencialmente no mesmo dia.</div>`},
+
+    labRecebimento:{p:15,q:'As palhetas chegaram ao laboratório identificadas e com boletim?',o:[['Sim','labSecagem'],['Não','labPendencia']],info:`<div class="al"><strong>Conferir no recebimento:</strong> código da palheta, código da armadilha, data, endereço/ponto, roteiro e ocorrências registradas.</div>`},
+    labPendencia:{p:15,result:true,title:'Pendência de identificação ou boletim',html:`<p>Separar o material e tentar corrigir a identificação com a equipe de campo antes da leitura. Registrar inconsistência.</p>`},
+    labSecagem:{p:30,q:'As palhetas foram colocadas para secar corretamente?',o:[['Sim','labFormigas'],['Não, orientar secagem','orientaSecagem']],info:`<div class="al"><strong>Secagem:</strong> 2 a 3 dias em temperatura ambiente, palhetas na horizontal, sem sobreposição, com a face dos ovos voltada para cima.</div>`},
+    orientaSecagem:{p:30,result:true,title:'Como secar as palhetas',html:`<ul class="clean"><li>Dispor na horizontal, sem sobreposição.</li><li>Manter face com ovos para cima.</li><li>Secar por 2 a 3 dias em temperatura ambiente.</li><li>Proteger de umidade e formigas.</li></ul>`},
+    labFormigas:{p:45,q:'As palhetas estão protegidas contra formigas e umidade?',o:[['Sim','labContagem'],['Não','orientaProtecao']],info:`<div class="al warn"><strong>Por que proteger?</strong> Formigas podem carregar ovos e prejudicar a contagem. Umidade pode comprometer a leitura e conservação.</div>`},
+    orientaProtecao:{p:45,result:true,title:'Proteção durante a secagem',html:`<p>Usar barreira física e manter em local limpo, seco e protegido. Uma estratégia é apoiar a bandeja com palhetas sobre suporte isolado, evitando acesso de formigas sem molhar o material.</p>`},
+    labContagem:{p:65,q:'A contagem dos ovos foi realizada com lupa estereoscópica?',o:[['Sim','labResultado'],['Não','orientaContagem']],info:`<img class="ov-img" src="ovit_lupa.png" alt="Lupa estereoscópica"><div class="al"><strong>Contagem:</strong> técnico treinado conta os ovos visualizados em cada palheta e registra na ficha correspondente à armadilha.</div>`},
+    orientaContagem:{p:65,result:true,title:'Como fazer a contagem',html:`<ul class="clean"><li>Usar lupa estereoscópica.</li><li>Contar ovos por palheta.</li><li>Registrar quantidade na linha correspondente.</li><li>Palheta sem ovos = negativa.</li><li>Registrar perdas, danos ou leitura impossibilitada.</li></ul>`},
+    labResultado:{p:80,q:'A palheta foi positiva para ovos?',o:[['Sim','higienizarPositiva'],['Não','palhetaNegativa']],info:`<div class="al"><strong>Classificação:</strong> palheta com ovos = positiva. Palheta sem ovos = negativa. O dado será usado para indicadores como IPO, IDO e IDV.</div>`},
+    higienizarPositiva:{p:90,q:'A ovitrampa positiva foi escovada ou substituída antes do reuso?',o:[['Sim','labFinal'],['Não','orientaHigienizacao']],info:`<div class="al danger"><strong>Importante:</strong> qualquer armadilha positiva deve ser escovada antes de reutilizar, garantindo remoção total dos ovos, ou substituída por outra.</div>`},
+    orientaHigienizacao:{p:90,result:true,title:'Higienizar ou substituir',html:`<p>Escovar completamente o recipiente antes de reutilizar. Se não for possível garantir remoção dos ovos, substituir a armadilha.</p>`},
+    palhetaNegativa:{p:90,q:'A palheta negativa está em bom estado?',o:[['Sim, pode reaproveitar conforme fluxo local','labFinal'],['Não, descartar conforme fluxo local','labFinal']],info:`<div class="al"><strong>Palheta negativa:</strong> pode ser reaproveitada ou descartada dependendo do estado de conservação e da padronização local.</div>`},
+    labFinal:{p:100,result:true,title:'Processamento laboratorial concluído',html:`<ul class="clean"><li>Palhetas secas e lidas.</li><li>Ovos contados.</li><li>Positivas e negativas registradas.</li><li>Ocorrências laboratoriais registradas.</li><li>Dados prontos para cálculo dos indicadores e/ou inserção no Conta-Ovos.</li></ul>`},
+
+    indicadores:{p:20,q:'Você quer calcular ou interpretar qual indicador?',o:[['IPO — positividade','ipo'],['IDO — densidade nas positivas','ido'],['IDV — densidade geral','idv'],['Alta infestação / resposta','altaInfestacao']],info:`<div class="al"><strong>Uso dos dados:</strong> os indicadores orientam o planejamento e o direcionamento das ações no território.</div>`},
+    ipo:{p:60,result:true,title:'IPO — Índice de Positividade de Ovitrampas',html:`<div class="formula">IPO = (nº de armadilhas positivas × 100) ÷ nº de armadilhas examinadas</div><p>Indica o percentual de armadilhas positivas.</p>`},
+    ido:{p:60,result:true,title:'IDO — Índice de Densidade de Ovos',html:`<div class="formula">IDO = nº total de ovos ÷ nº de armadilhas positivas</div><p>Indica a média de ovos entre as armadilhas positivas.</p>`},
+    idv:{p:60,result:true,title:'IDV — Índice de Densidade Vetorial',html:`<div class="formula">IDV = nº total de ovos ÷ nº de armadilhas examinadas</div><p>Indica a média geral de ovos considerando positivas e negativas.</p>`},
+    altaInfestacao:{p:100,result:true,title:'Indicadores em elevação ou alta infestação',html:`<p>Intensificar ações em raio de 200 metros ao redor da armadilha:</p><ul class="clean"><li>eliminação de depósitos;</li><li>visitas domiciliares;</li><li>educação em saúde;</li><li>inspeção vetorial;</li><li>tratamento de depósitos quando aplicável;</li><li>demais medidas orientadas pela área técnica.</li></ul>`}
+  };
+
+  function startOvitrampa(id){
+    ovStack.length = 0;
+    renderOvitrampa(id);
+    const target = document.getElementById('ov-alg');
+    if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  function renderOvitrampa(id){
+    const s = ovSteps[id]; if(!s) return;
+    const alg = document.getElementById('ov-alg');
+    const bar = document.getElementById('ov-bar');
+    if(bar) bar.style.width = (s.p || 0) + '%';
+    if(s.result){
+      alg.innerHTML = `<div class="ov-result"><h3>${s.title}</h3>${s.html}</div><button class="ov-back" onclick="goBackOvitrampa()">← Voltar</button>`;
+      return;
+    }
+    alg.innerHTML = `<div class="ov-question">${s.q}</div><div class="ov-options">${s.o.map(([label,next])=>`<button class="ov-opt" onclick="chooseOvitrampa('${id}','${next}')"><strong>${label}</strong></button>`).join('')}</div><div class="ov-orient">${s.info || ''}</div>${ovStack.length ? '<button class="ov-back" onclick="goBackOvitrampa()">← Voltar</button>' : ''}`;
+  }
+  function chooseOvitrampa(current,next){ ovStack.push(current); renderOvitrampa(next); }
+  function goBackOvitrampa(){ const last = ovStack.pop(); if(last) renderOvitrampa(last); }
+  window.startOvitrampa = startOvitrampa;
+  window.chooseOvitrampa = chooseOvitrampa;
+  window.goBackOvitrampa = goBackOvitrampa;
+
 
   if('serviceWorker' in navigator){
     window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js'));
