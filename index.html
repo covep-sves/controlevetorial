@@ -17,7 +17,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Arial,Helvetica,sans-serif;background:var(--fundo);color:var(--texto);font-size:15px;line-height:1.55}
-.topbar{width:100%;height:32px;background:#fff;overflow:hidden}.topbar img{width:100%;height:100%;object-fit:cover;display:block}
+.topbar{width:100%;height:18px;background:#fff;overflow:hidden}.topbar img{width:100%;height:100%;object-fit:cover;display:block}
 .brand{background:#fff;padding:24px 16px 20px;border-bottom:1px solid #eee}.brand-inner{max-width:760px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:44px}.brand img{max-height:64px;max-width:45%;object-fit:contain}
 .header-blue{background:var(--azul);color:#fff;box-shadow:0 3px 12px rgba(0,0,0,.18)}.header-inner{max-width:760px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:14px}.appicon{width:44px;height:44px;border-radius:10px;background:#fff;object-fit:cover}.header-blue h1{font-size:16px;line-height:1.18}.header-blue p{font-size:12px;opacity:.9}.home-fixed{position:fixed;right:12px;bottom:16px;z-index:90;background:var(--azul);color:#fff;border:0;border-radius:999px;padding:12px 16px;box-shadow:0 4px 16px rgba(0,0,0,.24);font-weight:700;cursor:pointer}
 .menu-toggle{position:sticky;top:0;z-index:95;width:100%;border:0;background:#fff;border-bottom:1px solid var(--borda);padding:13px 18px;color:var(--azul);font-weight:700;text-align:left;font-size:15px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
@@ -48,23 +48,19 @@ label{font-weight:700;color:#444;font-size:13px;margin-top:8px;display:block}inp
 <button class="menu-toggle" id="menuBtn">☰ Menu</button>
 <button class="home-fixed" data-target="inicio">🏠 Início</button>
 <div id="backdrop" class="backdrop"></div>
+
 <nav id="menu">
   <div class="mh"><strong>Menu</strong><button id="closeMenu">×</button></div>
   <a href="#" data-target="inicio" class="ativo">Início</a>
   <a href="#" data-target="decisao">Decisão rápida em campo</a>
   <a href="#" data-target="visita">Visita domiciliar</a>
-  <a href="#" data-target="caramujo">Encontrou caramujo</a>
-  <a href="#" data-target="inseto">Inseto com interesse em saúde pública</a>
-  <a href="#" data-target="mosquito">Mosquito / foco de água parada</a>
-  <a href="#" data-target="barbeiro">Encontrou barbeiro</a>
-  <a href="#" data-target="armadilha">Instalar armadilha</a>
-  <a href="#" data-target="monitoramento">Monitoramento programado</a>
   <a href="#" data-target="vetores">Orientar sobre vetores/endemias</a>
   <a href="#" data-target="bloqueio">Bloqueio / UBV</a>
   <a href="#" data-target="sinantropicos">Animais sinantrópicos</a>
   <a href="#" data-target="contatos">Contatos</a>
-  <a href="#" data-target="sobre">Sobre o aplicativo</a>
+  <a href="#" data-target="sobre">Sobre o App</a>
 </nav>
+
 
 <main>
 
@@ -72,19 +68,21 @@ label{font-weight:700;color:#444;font-size:13px;margin-top:8px;display:block}inp
   <div class="card az hero"><div class="tag">Apoio à decisão em campo</div><h2>O que você vai fazer agora?</h2><p>Selecione o módulo conforme a atividade ou dúvida durante as ações de controle vetorial e vigilância no território.</p></div>
   <div class="group-title">Módulos principais</div>
   <div class="top-modules">
+    <button class="tile" style="border-left-color:#F4A100" data-target="decisao"><strong>Decisão rápida em campo</strong><span>Vi isso → o que faço agora?</span></button>
     <button class="tile" style="border-left-color:#00529B" data-target="visita"><strong>Atividade no território</strong><span>Visita domiciliar, sinais de alerta e encaminhamentos</span></button>
-    <button class="tile" style="border-left-color:#F4A100" data-target="decisao"><strong>Decisão rápida</strong><span>Vi isso → o que faço agora?</span></button>
   </div>
-  <div class="group-title">Situações encontradas no campo</div>
+  
+<div class="group-title">Situações encontradas no campo</div>
   <div class="grid">
-    <button class="tile" style="border-left-color:#74B944" data-target="caramujo"><strong>Encontrou caramujo</strong><span>Coleta, orientação e encaminhamento</span></button>
-    <button class="tile" style="border-left-color:#F4A100" data-target="inseto"><strong>Inseto com possível interesse em saúde pública</strong><span>Avaliar vínculo com evento ou situação incomum</span></button>
     <button class="tile" style="border-left-color:#00AEEF" data-target="mosquito"><strong>Mosquito / foco de água parada</strong><span>Eliminar, vedar ou direcionar para larvicida</span></button>
+    <button class="tile" style="border-left-color:#74B944" data-target="caramujo"><strong>Encontrou caramujo</strong><span>Coleta, orientação e encaminhamento</span></button>
     <button class="tile" style="border-left-color:#C00000" data-target="barbeiro"><strong>Encontrou barbeiro</strong><span>Captura segura e envio para identificação</span></button>
+    <button class="tile" style="border-left-color:#F4A100" data-target="inseto"><strong>Inseto com possível interesse em saúde pública</strong><span>Avaliar vínculo com evento ou situação incomum</span></button>
     <button class="tile" style="border-left-color:#5EA88C" data-target="armadilha"><strong>Instalar armadilha</strong><span>Conteúdo em construção</span></button>
     <button class="tile" style="border-left-color:#74B944" data-target="monitoramento"><strong>Monitoramento programado</strong><span>Ações rotineiras da vigilância</span></button>
   </div>
   <div class="group-title">Apoio técnico</div>
+
   <div class="grid">
     <button class="tile" style="border-left-color:#00AEEF" data-target="vetores"><strong>Orientar sobre vetores/endemias</strong><span>Informações para educação em saúde</span></button>
     <button class="tile" style="border-left-color:#F4A100" data-target="bloqueio"><strong>Realizar bloqueio / UBV</strong><span>Uso técnico, alertas e comunicação à vigilância</span></button>
@@ -119,7 +117,7 @@ label{font-weight:700;color:#444;font-size:13px;margin-top:8px;display:block}inp
 
 <section id="visita">
   <div class="card az hero"><div class="tag">Visita domiciliar</div><h2>O que perguntar, observar e encaminhar</h2><p>O ACE não diagnostica, mas identifica sinais de alerta e ajuda a conectar o morador à rede de saúde.</p></div>
-  <div class="card vermelho"><h3>Quando o ACE deve acionar a vigilância?</h3><p>Evento de saúde pública é qualquer situação que foge da normalidade e pode representar risco coletivo.</p><div class="al danger"><strong>Regra simples:</strong> se houver vários casos no mesmo lugar em pouco tempo, comunique a vigilância.</div><ul class="clean"><li>Várias pessoas com febre na mesma rua ou bairro.</li><li>Mais de uma pessoa com diarreia no mesmo domicílio ou local próximo.</li><li>Casos em escola, creche, ILPI ou outra instituição.</li><li>Pessoas com sintomas semelhantes em curto período.</li><li>Situação incomum ou que chama atenção.</li></ul><p><strong>Fluxo:</strong> ACE → DCV → Vigilância Epidemiológica/CIEVS e área técnica.</p></div>
+  <ul class="clean"><li>Várias pessoas com febre na mesma rua ou bairro.</li><li>Mais de uma pessoa com diarreia no mesmo domicílio ou local próximo.</li><li>Casos em escola, creche, ILPI ou outra instituição.</li><li>Pessoas com sintomas semelhantes em curto período.</li><li>Situação incomum ou que chama atenção.</li></ul><p><strong>Fluxo:</strong> ACE → DCV → Vigilância Epidemiológica/CIEVS e área técnica.</p></div>
   <div class="card"><h3>Síndrome Gripal (SG)</h3><p><strong>Perguntar:</strong> febre recente, tosse, dor de garganta, coriza, dor no corpo.</p><p><strong>Suspeitar:</strong> febre + tosse ou dor de garganta.</p><div class="al ok"><strong>Conduta:</strong> orientar UBS, medidas respiratórias e comunicação conforme fluxo local.</div></div>
   <div class="card"><h3>Tuberculose</h3><p><strong>Perguntar:</strong> tosse por 3 semanas ou mais, emagrecimento, suor noturno, febre vespertina.</p><p><strong>Suspeitar:</strong> tosse persistente, especialmente com perda de peso e febre no fim do dia.</p><div class="al ok"><strong>Conduta:</strong> encaminhar para UBS. Orientar que contatos domiciliares e pessoas de convivência próxima também procurem avaliação, mesmo sem sintomas.</div></div>
   <div class="card"><h3>Arboviroses</h3><p><strong>Perguntar:</strong> febre recente, dor no corpo, dor atrás dos olhos, manchas na pele, dor nas articulações.</p><p><strong>Sinais de alarme:</strong> dor abdominal intensa, vômitos persistentes, sangramentos, tontura/desmaio, sonolência ou irritabilidade.</p><div class="al danger">Sinais de alarme exigem orientação para atendimento imediato. Se houver vários casos no mesmo lugar em pouco tempo, comunicar à DCV para acionamento da Vigilância Epidemiológica/CIEVS e área técnica.</div></div>
@@ -130,6 +128,7 @@ label{font-weight:700;color:#444;font-size:13px;margin-top:8px;display:block}inp
   <div class="card"><h3>Doenças diarreicas / MDDA</h3><p><strong>Perguntar:</strong> diarreia recente, vômitos, febre, mais de uma pessoa doente na casa, consumo de água/alimento suspeito.</p><p><strong>Suspeitar:</strong> vários casos no mesmo domicílio, rua, bairro, escola, creche ou instituição de longa permanência.</p><div class="al danger"><strong>Conduta:</strong> orientar hidratação e atendimento. Em suspeita de surto, comunicar imediatamente à DCV para acionamento da Vigilância Epidemiológica/CIEVS e área técnica.</div></div>
   <div class="card"><h3>Esquistossomose</h3><p><strong>Perguntar:</strong> contato com rio, lagoa, vala ou água doce; coceira após contato; dor abdominal ou diarreia.</p><p><strong>Observar:</strong> presença de caramujos e áreas de risco.</p><div class="al ok"><strong>Conduta:</strong> encaminhar para UBS para avaliação e exame. Orientar evitar contato com água suspeita. Mais de um caso na mesma área deve ser comunicado à DCV.</div></div>
   <div class="card"><h3>Filariose linfática</h3><p><strong>Perguntar:</strong> inchaço persistente em pernas, braços, mamas ou genitália; episódios de inflamação; área com esgoto/água poluída.</p><p><strong>Observar:</strong> condições ambientais favoráveis a Culex.</p><div class="al ok"><strong>Conduta:</strong> encaminhar para UBS para avaliação e investigação. Orientar proteção contra mosquitos e melhoria das condições ambientais.</div></div>
+<div class="card vermelho"><h3>Quando o ACE deve acionar a vigilância?</h3><p>Evento de saúde pública é qualquer situação que foge da normalidade e pode representar risco coletivo.</p><div class="al danger"><strong>Regra simples:</strong> se houver vários casos no mesmo lugar em pouco tempo, comunique a vigilância.</div>
 </section>
 
 <section id="caramujo">
