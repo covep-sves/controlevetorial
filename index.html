@@ -17,7 +17,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Arial,Helvetica,sans-serif;background:var(--fundo);color:var(--texto);font-size:15px;line-height:1.55}
-.topbar{width:100%;height:18px;background:#fff;overflow:hidden}.topbar img{width:100%;height:100%;object-fit:cover;display:block}
+.topbar{width:100%;height:16px;background:#fff;overflow:hidden}.topbar img{width:100%;height:100%;object-fit:cover;object-position:bottom;display:block}
 .brand{background:#fff;padding:24px 16px 20px;border-bottom:1px solid #eee}.brand-inner{max-width:760px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:44px}.brand img{max-height:64px;max-width:45%;object-fit:contain}
 .header-blue{background:var(--azul);color:#fff;box-shadow:0 3px 12px rgba(0,0,0,.18)}.header-inner{max-width:760px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:14px}.appicon{width:44px;height:44px;border-radius:10px;background:#fff;object-fit:cover}.header-blue h1{font-size:16px;line-height:1.18}.header-blue p{font-size:12px;opacity:.9}.home-fixed{position:fixed;right:12px;bottom:16px;z-index:90;background:var(--azul);color:#fff;border:0;border-radius:999px;padding:12px 16px;box-shadow:0 4px 16px rgba(0,0,0,.24);font-weight:700;cursor:pointer}
 .menu-toggle{position:sticky;top:0;z-index:95;width:100%;border:0;background:#fff;border-bottom:1px solid var(--borda);padding:13px 18px;color:var(--azul);font-weight:700;text-align:left;font-size:15px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
@@ -48,7 +48,6 @@ label{font-weight:700;color:#444;font-size:13px;margin-top:8px;display:block}inp
 <button class="menu-toggle" id="menuBtn">☰ Menu</button>
 <button class="home-fixed" data-target="inicio">🏠 Início</button>
 <div id="backdrop" class="backdrop"></div>
-
 <nav id="menu">
   <div class="mh"><strong>Menu</strong><button id="closeMenu">×</button></div>
   <a href="#" data-target="inicio" class="ativo">Início</a>
@@ -61,18 +60,18 @@ label{font-weight:700;color:#444;font-size:13px;margin-top:8px;display:block}inp
   <a href="#" data-target="sobre">Sobre o App</a>
 </nav>
 
-
 <main>
 
 <section id="inicio" class="ativa">
   <div class="card az hero"><div class="tag">Apoio à decisão em campo</div><h2>O que você vai fazer agora?</h2><p>Selecione o módulo conforme a atividade ou dúvida durante as ações de controle vetorial e vigilância no território.</p></div>
+
   <div class="group-title">Módulos principais</div>
   <div class="top-modules">
-    <button class="tile" style="border-left-color:#F4A100" data-target="decisao"><strong>Decisão rápida em campo</strong><span>Vi isso → o que faço agora?</span></button>
+    <button class="tile" style="border-left-color:#F4A100" data-target="decisao"><strong>Decisão rápida</strong><span>Vi isso → o que faço agora?</span></button>
     <button class="tile" style="border-left-color:#00529B" data-target="visita"><strong>Atividade no território</strong><span>Visita domiciliar, sinais de alerta e encaminhamentos</span></button>
   </div>
-  
-<div class="group-title">Situações encontradas no campo</div>
+
+  <div class="group-title">Situações encontradas no campo</div>
   <div class="grid">
     <button class="tile" style="border-left-color:#00AEEF" data-target="mosquito"><strong>Mosquito / foco de água parada</strong><span>Eliminar, vedar ou direcionar para larvicida</span></button>
     <button class="tile" style="border-left-color:#74B944" data-target="caramujo"><strong>Encontrou caramujo</strong><span>Coleta, orientação e encaminhamento</span></button>
@@ -81,14 +80,13 @@ label{font-weight:700;color:#444;font-size:13px;margin-top:8px;display:block}inp
     <button class="tile" style="border-left-color:#5EA88C" data-target="armadilha"><strong>Instalar armadilha</strong><span>Conteúdo em construção</span></button>
     <button class="tile" style="border-left-color:#74B944" data-target="monitoramento"><strong>Monitoramento programado</strong><span>Ações rotineiras da vigilância</span></button>
   </div>
-  <div class="group-title">Apoio técnico</div>
 
+  <div class="group-title">Apoio técnico</div>
   <div class="grid">
     <button class="tile" style="border-left-color:#00AEEF" data-target="vetores"><strong>Orientar sobre vetores/endemias</strong><span>Informações para educação em saúde</span></button>
     <button class="tile" style="border-left-color:#F4A100" data-target="bloqueio"><strong>Realizar bloqueio / UBV</strong><span>Uso técnico, alertas e comunicação à vigilância</span></button>
   </div>
 </section>
-
 
 <section id="decisao">
   <div class="card laranja hero"><div class="tag">Modo rápido</div><h2>Vi isso → o que faço?</h2><p>Escolha a situação encontrada no campo. O app direciona para a conduta mais adequada.</p></div>
@@ -116,19 +114,29 @@ label{font-weight:700;color:#444;font-size:13px;margin-top:8px;display:block}inp
 </section>
 
 <section id="visita">
-  <div class="card az hero"><div class="tag">Visita domiciliar</div><h2>O que perguntar, observar e encaminhar</h2><p>O ACE não diagnostica, mas identifica sinais de alerta e ajuda a conectar o morador à rede de saúde.</p></div>
-  <ul class="clean"><li>Várias pessoas com febre na mesma rua ou bairro.</li><li>Mais de uma pessoa com diarreia no mesmo domicílio ou local próximo.</li><li>Casos em escola, creche, ILPI ou outra instituição.</li><li>Pessoas com sintomas semelhantes em curto período.</li><li>Situação incomum ou que chama atenção.</li></ul><p><strong>Fluxo:</strong> ACE → DCV → Vigilância Epidemiológica/CIEVS e área técnica.</p></div>
-  <div class="card"><h3>Síndrome Gripal (SG)</h3><p><strong>Perguntar:</strong> febre recente, tosse, dor de garganta, coriza, dor no corpo.</p><p><strong>Suspeitar:</strong> febre + tosse ou dor de garganta.</p><div class="al ok"><strong>Conduta:</strong> orientar UBS, medidas respiratórias e comunicação conforme fluxo local.</div></div>
-  <div class="card"><h3>Tuberculose</h3><p><strong>Perguntar:</strong> tosse por 3 semanas ou mais, emagrecimento, suor noturno, febre vespertina.</p><p><strong>Suspeitar:</strong> tosse persistente, especialmente com perda de peso e febre no fim do dia.</p><div class="al ok"><strong>Conduta:</strong> encaminhar para UBS. Orientar que contatos domiciliares e pessoas de convivência próxima também procurem avaliação, mesmo sem sintomas.</div></div>
-  <div class="card"><h3>Arboviroses</h3><p><strong>Perguntar:</strong> febre recente, dor no corpo, dor atrás dos olhos, manchas na pele, dor nas articulações.</p><p><strong>Sinais de alarme:</strong> dor abdominal intensa, vômitos persistentes, sangramentos, tontura/desmaio, sonolência ou irritabilidade.</p><div class="al danger">Sinais de alarme exigem orientação para atendimento imediato. Se houver vários casos no mesmo lugar em pouco tempo, comunicar à DCV para acionamento da Vigilância Epidemiológica/CIEVS e área técnica.</div></div>
-  <div class="card"><h3>Malária</h3><p><strong>Perguntar:</strong> febre no final da tarde ou febre cíclica, calafrios, suor, viagem ou procedência de área de transmissão.</p><p><strong>Suspeitar:</strong> febre + calafrios + vínculo epidemiológico.</p><div class="al ok">Encaminhar para diagnóstico oportuno.</div></div>
-  <div class="card"><h3>Leishmaniose visceral</h3><p><strong>Perguntar:</strong> febre prolongada, emagrecimento, fraqueza, aumento da barriga, presença de cães ou área com mosquito-palha.</p><p><strong>Suspeitar:</strong> febre persistente + emagrecimento/aumento abdominal.</p><div class="al danger"><strong>Conduta:</strong> encaminhar imediatamente para UBS para avaliação médica e exames. Comunicar equipe de saúde para investigação no território.</div></div>
-  <div class="card"><h3>Leishmaniose tegumentar</h3><p><strong>Perguntar:</strong> ferida na pele que não cicatriza, lesão há semanas ou meses, lesão em mucosa, histórico de área de mata ou exposição.</p><p><strong>Suspeitar:</strong> úlcera crônica, geralmente de bordas elevadas.</p><div class="al ok"><strong>Conduta:</strong> encaminhar para UBS. Orientar não usar medicamento caseiro na lesão.</div></div>
-  <div class="card"><h3>Hanseníase</h3><p><strong>Perguntar:</strong> manchas na pele, dormência, formigamento, perda de sensibilidade ao calor/frio/dor.</p><p><strong>Suspeitar:</strong> mancha com alteração de sensibilidade.</p><div class="al ok"><strong>Conduta:</strong> encaminhar para APS/PMCH. Orientar que todos os moradores da casa e contatos próximos devem procurar UBS para exame de contato, mesmo sem sintomas.</div></div>
-  <div class="card"><h3>Doenças diarreicas / MDDA</h3><p><strong>Perguntar:</strong> diarreia recente, vômitos, febre, mais de uma pessoa doente na casa, consumo de água/alimento suspeito.</p><p><strong>Suspeitar:</strong> vários casos no mesmo domicílio, rua, bairro, escola, creche ou instituição de longa permanência.</p><div class="al danger"><strong>Conduta:</strong> orientar hidratação e atendimento. Em suspeita de surto, comunicar imediatamente à DCV para acionamento da Vigilância Epidemiológica/CIEVS e área técnica.</div></div>
-  <div class="card"><h3>Esquistossomose</h3><p><strong>Perguntar:</strong> contato com rio, lagoa, vala ou água doce; coceira após contato; dor abdominal ou diarreia.</p><p><strong>Observar:</strong> presença de caramujos e áreas de risco.</p><div class="al ok"><strong>Conduta:</strong> encaminhar para UBS para avaliação e exame. Orientar evitar contato com água suspeita. Mais de um caso na mesma área deve ser comunicado à DCV.</div></div>
-  <div class="card"><h3>Filariose linfática</h3><p><strong>Perguntar:</strong> inchaço persistente em pernas, braços, mamas ou genitália; episódios de inflamação; área com esgoto/água poluída.</p><p><strong>Observar:</strong> condições ambientais favoráveis a Culex.</p><div class="al ok"><strong>Conduta:</strong> encaminhar para UBS para avaliação e investigação. Orientar proteção contra mosquitos e melhoria das condições ambientais.</div></div>
-<div class="card vermelho"><h3>Quando o ACE deve acionar a vigilância?</h3><p>Evento de saúde pública é qualquer situação que foge da normalidade e pode representar risco coletivo.</p><div class="al danger"><strong>Regra simples:</strong> se houver vários casos no mesmo lugar em pouco tempo, comunique a vigilância.</div>
+  <div class="card az hero"><div class="tag">Visita domiciliar</div><h2>O que perguntar, observar e encaminhar</h2><p>O ACE não diagnostica, mas identifica sinais de alerta, orienta a população e ajuda a conectar o morador à rede de saúde e à vigilância.</p></div>
+
+  <div class="card"><h3>2. Arboviroses</h3><p><strong>Perguntar:</strong> febre recente, dor no corpo, dor atrás dos olhos, manchas na pele, dor nas articulações, náuseas ou vômitos.</p><p><strong>Suspeitar:</strong> febre de início súbito associada a dor no corpo, cefaleia, exantema ou artralgia.</p><p><strong>Sinais de alarme:</strong> dor abdominal intensa, vômitos persistentes, sangramentos, tontura/desmaio, sonolência, irritabilidade ou piora importante do estado geral.</p><div class="al danger"><strong>Conduta:</strong> sinais de alarme exigem orientação para atendimento imediato. Se houver vários casos no mesmo lugar em curto período, comunicar à DCV.</div></div>
+
+  <div class="card"><h3>3. Diarreia / MDDA</h3><p><strong>Perguntar:</strong> diarreia recente, vômitos, febre, presença de sangue nas fezes, mais de uma pessoa doente na casa, consumo de água/alimento suspeito.</p><p><strong>Suspeitar:</strong> mais de um caso no mesmo domicílio, rua, bairro, escola, creche, ILPI ou outra instituição.</p><div class="al danger"><strong>Conduta:</strong> orientar hidratação e atendimento na UBS. Em suspeita de surto, comunicar imediatamente à DCV para acionamento da Vigilância Epidemiológica/CIEVS e área técnica.</div></div>
+
+  <div class="card"><h3>4. Síndrome Gripal (SG)</h3><p><strong>Perguntar:</strong> febre recente, tosse, dor de garganta, coriza, dor no corpo, falta de ar ou piora respiratória.</p><p><strong>Suspeitar:</strong> febre + tosse ou dor de garganta, especialmente quando houver outros casos na família, escola ou comunidade.</p><div class="al ok"><strong>Conduta:</strong> orientar procura da UBS, medidas respiratórias, etiqueta da tosse, higiene das mãos e comunicação conforme fluxo local.</div></div>
+
+  <div class="card"><h3>5. Leishmaniose visceral</h3><p><strong>Perguntar:</strong> febre prolongada, emagrecimento, fraqueza, aumento da barriga, palidez, presença de cães sintomáticos ou área com ocorrência de mosquito-palha.</p><p><strong>Suspeitar:</strong> febre persistente associada a emagrecimento, aumento abdominal ou fraqueza importante.</p><div class="al danger"><strong>Conduta:</strong> encaminhar para UBS para avaliação clínica e exames. Comunicar a equipe de saúde quando houver suspeita em área com risco ou presença de cães sintomáticos.</div></div>
+
+  <div class="card"><h3>6. Leishmaniose tegumentar</h3><p><strong>Perguntar:</strong> ferida na pele que não cicatriza, lesão há semanas ou meses, lesão em mucosa, histórico de área de mata, quintal com matéria orgânica ou exposição ao mosquito-palha.</p><p><strong>Suspeitar:</strong> úlcera crônica, geralmente com bordas elevadas, ou lesões persistentes em pele/mucosa.</p><div class="al ok"><strong>Conduta:</strong> encaminhar para UBS. Orientar não usar medicamento caseiro na lesão e não atrasar avaliação.</div></div>
+
+  <div class="card"><h3>7. Tuberculose</h3><p><strong>Perguntar:</strong> tosse por 3 semanas ou mais, emagrecimento, suor noturno, febre vespertina, cansaço e contato com pessoa com tuberculose.</p><p><strong>Suspeitar:</strong> tosse persistente, especialmente com perda de peso e febre no fim do dia.</p><div class="al ok"><strong>Conduta:</strong> encaminhar para UBS. Orientar que contatos domiciliares e pessoas de convivência próxima também procurem avaliação, mesmo sem sintomas.</div></div>
+
+  <div class="card"><h3>8. Malária</h3><p><strong>Perguntar:</strong> febre no final da tarde ou febre cíclica, calafrios, suor, dor no corpo, viagem ou procedência de área com transmissão de malária.</p><p><strong>Suspeitar:</strong> febre + calafrios + vínculo epidemiológico com área de transmissão.</p><div class="al danger"><strong>Conduta:</strong> encaminhar imediatamente para UBS/serviço de referência para diagnóstico oportuno, especialmente quando houver histórico de viagem.</div></div>
+
+  <div class="card"><h3>9. Hanseníase</h3><p><strong>Perguntar:</strong> manchas na pele, dormência, formigamento, perda de sensibilidade ao calor/frio/dor, fraqueza em mãos ou pés.</p><p><strong>Suspeitar:</strong> mancha com alteração de sensibilidade ou sintomas neurológicos periféricos.</p><div class="al ok"><strong>Conduta:</strong> encaminhar para APS/PMCH. Orientar que todos os moradores da casa e contatos próximos devem procurar UBS para exame de contato, mesmo sem sintomas.</div></div>
+
+  <div class="card"><h3>10. Outros sinais relevantes</h3><p><strong>Observar e orientar encaminhamento</strong> quando houver sinais incomuns ou agravamento do estado geral:</p><ul class="clean"><li>Febre persistente sem causa aparente.</li><li>Sangramentos, desmaio, sonolência intensa ou confusão mental.</li><li>Falta de ar, piora respiratória ou lábios arroxeados.</li><li>Inchaço persistente em membros, lesões de pele extensas ou feridas que não cicatrizam.</li><li>Vários moradores com sintomas semelhantes no mesmo período.</li></ul></div>
+
+  <div class="card"><h3>11. Encaminhamentos</h3><p><strong>O ACE deve orientar procura da UBS</strong> sempre que identificar sinais compatíveis com agravo transmissível, doença de notificação ou situação que demande avaliação clínica.</p><ul class="clean"><li>Casos com sinais de gravidade: orientar atendimento imediato.</li><li>Casos suspeitos sem gravidade: orientar UBS de referência do território.</li><li>Contatos de tuberculose e hanseníase: orientar avaliação na UBS.</li><li>Suspeitas envolvendo animais/reservatórios: orientar fluxo específico e, quando aplicável, UVZ.</li></ul></div>
+
+  <div class="card vermelho"><h3>12. Comunicação de risco / Quando acionar a vigilância?</h3><p><strong>Evento de saúde pública</strong> é qualquer situação que foge ao padrão esperado e pode representar risco à saúde coletiva.</p><p>Comunique principalmente quando houver ocorrência de sinais ou sintomas semelhantes, aumento inesperado de casos em determinado local ou situações com potencial de transmissão.</p><div class="al danger"><strong>Cluster:</strong> ocorrência de vários casos próximos no tempo e no espaço.</div><ul class="clean"><li>Várias pessoas doentes na mesma residência.</li><li>Casos semelhantes na mesma rua ou bairro.</li><li>Pessoas com sintomas parecidos em curto período de tempo.</li><li>Ocorrências em instituições: escola, creche, ILPI, abrigo ou unidade coletiva.</li></ul><p><strong>Fluxo:</strong> ACE → DCV → Vigilância Epidemiológica/CIEVS e área técnica.</p><p><strong>DCV:</strong> (98) 99220-6557<br><strong>COVEP:</strong> vigilanciaepidemiologica.sves@semus.saoluis.ma.gov.br</p></div>
 </section>
 
 <section id="caramujo">
